@@ -1,0 +1,113 @@
+@import "tailwindcss";
+/* Définition des polices */
+
+:root {
+  --it4a-primary: #f1ca13;
+  --it4a-secondary: #1d3446;
+  --it4a-accent: #0a84c1;
+  --it4a-orange: #ff7f11;
+
+  --background: #f8fafc;
+  --foreground: #09090b;
+  --primary: #f1ca13;
+  --primary-foreground: #000000;
+  --secondary: #0a84c1;
+  --secondary-foreground: #ffffff;
+  --accent-foreground: #ffffff;
+  --border: #d4d4d4;
+
+  --shadow-2xs: 2px 2px 0px 0px hsl(0 0% 0% / 50.00);
+  --shadow-xs: 2px 2px 0px 0px hsl(0 0% 0% / 50.00);
+  --shadow-sm: 2px 2px 0px 0px hsl(0 0% 0% / 100.00), 2px 1px 2px -1px hsl(0 0% 0% / 100.00);
+  --shadow: 2px 2px 0px 0px hsl(0 0% 0% / 100.00), 2px 1px 2px -1px hsl(0 0% 0% / 100.00);
+  --shadow-md: 2px 2px 0px 0px hsl(0 0% 0% / 100.00), 2px 2px 4px -1px hsl(0 0% 0% / 100.00);
+  --shadow-lg: 2px 2px 0px 0px hsl(0 0% 0% / 100.00), 2px 4px 6px -1px hsl(0 0% 0% / 100.00);
+  --shadow-xl: 2px 2px 0px 0px hsl(0 0% 0% / 100.00), 2px 8px 10px -1px hsl(0 0% 0% / 100.00);
+  --shadow-2xl: 2px 2px 0px 0px hsl(0 0% 0% / 250.00);
+  --tracking-normal: 0.025em;
+  --spacing: 0.25rem;
+
+  --text-it4africa-h1:48px;
+  --text-it4africa-h2:32px;
+  --text-it4africa-h3:24px;
+  --text-it4africa-p:16px;
+  --text-it4africa-lt:14px;
+  --text-it4africa-bnt:12px;
+
+  --font-Poppins: "Poppins", sans-serif;
+  --font-Helvetica: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+
+@theme  {
+  --color-it4a-primary:var(--it4a-primary);
+  --color-it4a-secondary:var(--it4a-secondary);
+  --color-it4a-accent:var(--it4a-accent);
+  --color-it4a-orange:var(--it4a-orange);
+
+  --font-Poppins: var(--font-Poppins);
+  --font-Helvetica: var(--font-Helvetica);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+
+  --rounded-radius-sm: calc(var(--radius) - 4px);
+  --rounded-radius-md: calc(var(--radius) - 2px);
+  --rounded-radius-lg: var(--radius);
+  --rounded-radius-xl: calc(var(--radius) + 4px);
+
+  --shadow-2xs: var(--shadow-2xs);
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow: var(--shadow);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+  --shadow-2xl: var(--shadow-2xl);
+
+  --text-it4africa-h1:var(--text-it4africa-h1);
+  --text-it4africa-h2:var(--text-it4africa-h2);
+  --text-it4africa-h3:var(--text-it4africa-h3);
+  --text-it4africa-p:var(--text-it4africa-p);
+  --text-it4africa-lt:var(--text-it4africa-lt);
+  --text-it4africa-bnt:var(--text-it4africa-bnt);
+
+}
+font-face {
+  font-family: "Poppins";
+  src: url("../fonts/Poppins-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+.dark {
+  --background: #121826;
+  --foreground: #e2e2e2;
+  --card: #1d3446;
+  --card-foreground: #e2e2e2;
+  --popover: #1d3446;
+  --popover-foreground: #e2e2e2;
+  --primary: #f1ca13;
+  --primary-foreground: #000000;
+  --secondary: #0a84c1;
+  --secondary-foreground: #ffffff;
+  
+  --shadow-2xs: 2px 2px 0px 0px hsl(0 0% 100% / 50.00);
+  --shadow-xs: 2px 2px 0px 0px hsl(0 0% 100% / 50.00);
+  --shadow-sm: 2px 2px 0px 0px hsl(0 0% 100% / 100.00), 2px 1px 2px -1px hsl(0 0% 100% / 100.00);
+  --shadow: 2px 2px 0px 0px hsl(0 0% 100% / 100.00), 2px 1px 2px -1px hsl(0 0% 100% / 100.00);
+  --shadow-md: 2px 2px 0px 0px hsl(0 0% 100% / 100.00), 2px 2px 4px -1px hsl(0 0% 100% / 100.00);
+  --shadow-lg: 2px 2px 0px 0px hsl(0 0% 100% / 100.00), 2px 4px 6px -1px hsl(0 0% 100% / 100.00);
+  --shadow-xl: 2px 2px 0px 0px hsl(0 0% 100% / 100.00), 2px 8px 10px -1px hsl(0 0% 100% / 100.00);
+  --shadow-2xl: 2px 2px 0px 0px hsl(0 0% 100% / 250.00);
+}
+
+body {
+  letter-spacing: var(--tracking-normal);
+}
