@@ -198,7 +198,7 @@ const NetworkBackground = ({
   }, [nodes, mousePosition, windowSize, baseColor, mouseRepulsion]);
 
   return (
-    <div className={`fixed inset-0 overflow-hidden pointer-events-none -z-10 ${className}`}>
+    <div className={`${className} inset-0 overflow-hidden pointer-events-none -z-10 `}>
       <svg 
         className="w-full h-full" 
         viewBox="0 0 100 100" 

@@ -4,7 +4,7 @@ import { gsap } from "gsap";
 export interface ChromaItem {
   image: string;
   title: string;
-  subtitle: string;
+  subtitle?: string;
   handle?: string;
   location?: string;
   borderColor?: string;

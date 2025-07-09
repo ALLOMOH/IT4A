@@ -1,7 +1,8 @@
 // src/components/Footer.tsx
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-
+import TriangularBackground from './Animation/TriangularBackground';
+import logo  from '/WhiteLogoH.png?url';
 interface FooterSection {
   title: string;
   links: { label: string; href: string; }[];
@@ -22,7 +23,7 @@ interface ContactInfo {
 interface FooterProps {
   companyName?: string;
   description?: string;
-  logo?: React.ReactNode;
+  logo?: string;
   sections?: FooterSection[];
   socialLinks?: SocialLink[];
   contactInfo?: ContactInfo[];
@@ -41,14 +42,6 @@ interface FooterProps {
 const Footer: React.FC<FooterProps> = ({
   companyName = "VotreEntreprise",
   description = "Nous transformons vos idées en solutions numériques innovantes. Notre équipe d'experts est dédiée à votre réussite.",
-  logo = (
-    <div className="flex items-center">
-      <div className="bg-blue-600 w-10 h-10 rounded-lg flex items-center justify-center mr-3">
-        <span className="text-white font-bold text-xl">V</span>
-      </div>
-      <span className="text-xl font-bold">{companyName}</span>
-    </div>
-  ),
   sections = [
     {
       title: "Navigation",
@@ -107,7 +100,11 @@ const Footer: React.FC<FooterProps> = ({
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isNearFooter, setIsNearFooter] = useState(false);
+  const [isDack,setIsDack] = useState(false);
   const footerRef = useRef<HTMLDivElement>(null);
+
+
+
   
   // Animation variants
   const containerVariants = {
@@ -153,6 +150,10 @@ const Footer: React.FC<FooterProps> = ({
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+
+    
+
+
   }, []);
 
   const scrollToTop = () => {
@@ -163,208 +164,207 @@ const Footer: React.FC<FooterProps> = ({
   };
 
   return (
-    <footer 
-      ref={footerRef}
-      className={`${bgGradient} ${textColor} pt-16 pb-8 relative ${className}`}
-    >
-      {/* Bouton flottant "Retour en haut" */}
-      <AnimatePresence>
-        {isVisible && (
-          <motion.button
-            className={`fixed z-50 w-14 h-14 rounded-full bg-blue-500 text-white shadow-xl flex items-center justify-center
-              ${isNearFooter ? 'bottom-24' : 'bottom-8'} left-1/2 transform -translate-x-1/2`}
-            onClick={scrollToTop}
-            variants={scrollButtonVariants}
-            initial="hidden"
-            animate="visible"
-            exit="hidden"
-            whileHover="hover"
-            whileTap="tap"
-            aria-label="Remonter en haut de la page"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-            </svg>
-            
-            {/* Animation de pulsation pour attirer l'attention */}
+ 
+
+    <TriangularBackground theme='dark' >
+      <footer
+        ref={footerRef}
+        className={`${bgGradient} ${textColor} pt-16 pb-8 relative ${className}`}
+      >
+        {/* Bouton flottant "Retour en haut" */}
+        <AnimatePresence>
+          {isVisible && (
+            <motion.button
+              className={`fixed z-50 w-14 h-14 rounded-full bg-blue-500 text-white shadow-xl flex items-center justify-center
+                ${isNearFooter ? 'bottom-24' : 'bottom-8'} left-1/2 transform -translate-x-1/2`}
+              onClick={scrollToTop}
+              variants={scrollButtonVariants}
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+              whileHover="hover"
+              whileTap="tap"
+              aria-label="Remonter en haut de la page"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+              </svg>
+      
+              {/* Animation de pulsation pour attirer l'attention */}
+              <motion.div
+                className="absolute inset-0 rounded-full bg-blue-500 opacity-50"
+                animate={{
+                  scale: [1, 1.2, 1],
+                  opacity: [0.5, 0, 0.5]
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+            </motion.button>
+          )}
+        </AnimatePresence>
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+            {/* Colonne Logo et Description */}
             <motion.div
-              className="absolute inset-0 rounded-full bg-blue-500 opacity-50"
-              animate={{
-                scale: [1, 1.2, 1],
-                opacity: [0.5, 0, 0.5]
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-          </motion.button>
-        )}
-      </AnimatePresence>
-
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-          {/* Colonne Logo et Description */}
-          <motion.div 
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="lg:col-span-1"
-          >
-            <motion.div variants={itemVariants} className="mb-6">
-              {logo}
-            </motion.div>
-            
-            <motion.p variants={itemVariants} className="text-gray-400 mb-6">
-              {description}
-            </motion.p>
-            
-            <motion.div variants={itemVariants} className="flex space-x-4">
-              {socialLinks.map((social) => (
-                <motion.a
-                  key={social.name}
-                  href={social.url}
-                  whileHover={{ y: -5, scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="bg-gray-800 hover:bg-blue-600 transition-colors w-10 h-10 rounded-full flex items-center justify-center"
-                  aria-label={social.name}
-                >
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d={social.icon} />
-                  </svg>
-                </motion.a>
-              ))}
-            </motion.div>
-          </motion.div>
-
-          {/* Colonnes de liens */}
-          {sections.map((section) => (
-            <motion.div 
-              key={section.title}
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               className="lg:col-span-1"
             >
-              <motion.h3 
-                variants={itemVariants}
-                className={`text-lg font-bold mb-6 pb-2 relative after:absolute after:bottom-0 after:left-0 after:w-12 after:h-0.5 ${accentColor.replace('text', 'bg')}`}
+              <motion.div variants={itemVariants} className="mb-6">
+                <img src={typeof logo === 'string' ? logo : (logo as { src: string }).src} alt="logo Ite4a"/>
+              </motion.div>
+      
+              <motion.p variants={itemVariants} className="text-gray-400 mb-6">
+                {description}
+              </motion.p>
+      
+              <motion.div variants={itemVariants} className="flex space-x-4">
+                {socialLinks.map((social) => (
+                  <motion.a
+                    key={social.name}
+                    href={social.url}
+                    whileHover={{ y: -5, scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="bg-gray-800 hover:bg-blue-600 transition-colors w-10 h-10 rounded-full flex items-center justify-center"
+                    aria-label={social.name}
+                  >
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d={social.icon} />
+                    </svg>
+                  </motion.a>
+                ))}
+              </motion.div>
+            </motion.div>
+            {/* Colonnes de liens */}
+            {sections.map((section) => (
+              <motion.div
+                key={section.title}
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+                className="lg:col-span-1"
               >
-                {section.title}
+                <motion.h3
+                  variants={itemVariants}
+                  className={`text-lg font-bold mb-6 pb-2 relative after:absolute after:bottom-0 after:left-0 after:w-12 after:h-0.5 ${accentColor.replace('text', 'bg')}`}
+                >
+                  {section.title}
+                </motion.h3>
+      
+                <ul className="space-y-3">
+                  {section.links.map((link, index) => (
+                    <motion.li
+                      key={index}
+                      variants={itemVariants}
+                      whileHover={{ x: 5 }}
+                    >
+                      <a
+                        href={link.href}
+                        className={`text-gray-400 ${linkHoverColor} transition-colors flex items-start group`}
+                      >
+                        <svg className="w-4 h-4 mt-1 mr-2 text-it4a-primary opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                        {link.label}
+                      </a>
+                    </motion.li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+            {/* Colonne Contact */}
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              className="lg:col-span-1 "
+            >
+              <motion.h3
+                variants={itemVariants}
+                className={`text-lg font-Poppins font-bold mb-6 pb-2 relative after:absolute after:bottom-0 after:left-0 after:w-12 after:h-0.5 ${accentColor.replace('text', 'bg')}`}
+              >
+                Contact
               </motion.h3>
-              
-              <ul className="space-y-3">
-                {section.links.map((link, index) => (
-                  <motion.li 
+      
+              <ul className="space-y-4">
+                {contactInfo.map((info, index) => (
+                  <motion.li
                     key={index}
                     variants={itemVariants}
-                    whileHover={{ x: 5 }}
+                    className="flex items-start"
                   >
-                    <a 
-                      href={link.href} 
-                      className={`text-gray-400 ${linkHoverColor} transition-colors flex items-start group`}
-                    >
-                      <svg className="w-4 h-4 mt-1 mr-2 text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                    <div className="bg-blue-600/10 p-2 rounded-lg mr-3 flex items-center justify-center">
+                      <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d={info.icon} />
                       </svg>
-                      {link.label}
-                    </a>
+                    </div>
+                    <div>
+                      <p className="font-Helvetica ">{info.label}</p>
+                      <p className="text-gray-400 font-Poppins">{info.value}</p>
+                    </div>
                   </motion.li>
                 ))}
               </ul>
+      
+              <motion.div variants={itemVariants} className="mt-8">
+                <h4 className="font-Helvetica mb-3">Newsletter</h4>
+                <div className="flex">
+                  <input
+                    type="email"
+                    placeholder={newsletterPlaceholder}
+                    className="bg-gray-800 text-white px-4 py-2 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
+                  />
+                  <button className={`bg-it4a-primary hover:bg-it4a-orange transition-colors px-4 py-2 rounded-r-lg font-medium ${textColor}`}>
+                    {newsletterButtonText}
+                  </button>
+                </div>
+                <p className="text-gray-500 text-sm mt-2">
+                  {newsletterDescription}
+                </p>
+              </motion.div>
             </motion.div>
-          ))}
-
-          {/* Colonne Contact */}
-          <motion.div 
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="lg:col-span-1"
-          >
-            <motion.h3 
-              variants={itemVariants}
-              className={`text-lg font-bold mb-6 pb-2 relative after:absolute after:bottom-0 after:left-0 after:w-12 after:h-0.5 ${accentColor.replace('text', 'bg')}`}
+          </div>
+          {/* Divider */}
+          <div className="border-t border-gray-800 my-8"></div>
+          {/* Bas de footer */}
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="text-gray-500 text-sm mb-4 md:mb-0"
             >
-              Contact
-            </motion.h3>
-            
-            <ul className="space-y-4">
-              {contactInfo.map((info, index) => (
-                <motion.li 
+              {copyrightText}
+            </motion.p>
+      
+            <div className="flex space-x-6">
+              {legalLinks.map((link, index) => (
+                <motion.a
                   key={index}
-                  variants={itemVariants}
-                  className="flex items-start"
+                  href={link.href}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3 + index * 0.1 }}
+                  className={`text-gray-500 ${linkHoverColor} transition-colors text-sm`}
                 >
-                  <div className="bg-blue-600/10 p-2 rounded-lg mr-3 flex items-center justify-center">
-                    <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d={info.icon} />
-                    </svg>
-                  </div>
-                  <div>
-                    <p className="font-medium">{info.label}</p>
-                    <p className="text-gray-400">{info.value}</p>
-                  </div>
-                </motion.li>
+                  {link.label}
+                </motion.a>
               ))}
-            </ul>
-            
-            <motion.div variants={itemVariants} className="mt-8">
-              <h4 className="font-medium mb-3">Newsletter</h4>
-              <div className="flex">
-                <input 
-                  type="email" 
-                  placeholder={newsletterPlaceholder}
-                  className="bg-gray-800 text-white px-4 py-2 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
-                />
-                <button className={`bg-blue-600 hover:bg-blue-700 transition-colors px-4 py-2 rounded-r-lg font-medium ${textColor}`}>
-                  {newsletterButtonText}
-                </button>
-              </div>
-              <p className="text-gray-500 text-sm mt-2">
-                {newsletterDescription}
-              </p>
-            </motion.div>
-          </motion.div>
-        </div>
-
-        {/* Divider */}
-        <div className="border-t border-gray-800 my-8"></div>
-
-        {/* Bas de footer */}
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-            className="text-gray-500 text-sm mb-4 md:mb-0"
-          >
-            {copyrightText}
-          </motion.p>
-          
-          <div className="flex space-x-6">
-            {legalLinks.map((link, index) => (
-              <motion.a
-                key={index}
-                href={link.href}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 + index * 0.1 }}
-                className={`text-gray-500 ${linkHoverColor} transition-colors text-sm`}
-              >
-                {link.label}
-              </motion.a>
-            ))}
+            </div>
           </div>
         </div>
-      </div>
-    </footer>
+      </footer>
+    </TriangularBackground>
   );
 };
 

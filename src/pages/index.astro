@@ -13,11 +13,20 @@ import LightCommunicationBackground from '../components/react/UI/Animation/Light
 
 import Services from '../components/react/sections/Services';
 
+import TracingBeam from '../components/uiAceternity/UI/components/TracingBeam';
+
+
+
+import Hero from '../components/react/sections/Hero';
+import CtaSection from '../components/react/sections/CtaSection';
+import SectorsActiviter from '../components/react/sections/SectorsActiviter';
+
+
 ---
 
-<Layout title="ITE4africa" client:load>
-	<LightCommunicationBackground  className='w-screen ' client:load>
-    <Services  client:load/>
-	</LightCommunicationBackground>
-  <section class="h-screen "></section>
+<Layout title="ITE4africa">
+  <Hero client:load/>
+  <SectorsActiviter client:load/>
+  <Services className="backdrop-blur-xs" client:idle/>
+  <CtaSection client:only/>
 </Layout>

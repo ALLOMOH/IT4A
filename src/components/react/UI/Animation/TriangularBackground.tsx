@@ -77,13 +77,13 @@ const TriangularBackground: React.FC<TriangleBacgrounndProps> = ({
     lightParticlesCount: 30,
     colors: {
       light: { 
-        background: '#f8fafc', 
+        background: '#d4d4d4', 
         points: '#0a84c1', 
         lines: '#000000',
         particles: '#f1ca13'
       },
       dark: { 
-        background: '#121826', 
+        background: '#1d3446', 
         points: '#e2e2e2', 
         lines: '#0a84c1',
         particles: '#f1ca13'
@@ -315,10 +315,10 @@ const TriangularBackground: React.FC<TriangleBacgrounndProps> = ({
   };
 
   return (
-    <div className= {`${className} inset-0 z-0 relative`}>
+    <div className= {`${className} inset-0 z-0 relative overflow-hidden`}>
       <canvas 
         ref={canvasRef} 
-        className="w-full h-full absolute top-0 left-0"
+        className="w-full h-full absolute top-0 left-0 -z-1"
       />
       {children}
     </div>

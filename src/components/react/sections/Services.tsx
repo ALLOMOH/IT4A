@@ -1,9 +1,8 @@
 import { cn } from "../../../lib/utils";
-import {
-  Code,
-} from "lucide-react";
+import { Cloud, Code, Settings, Users, Shield} from 'lucide-react';
+import TriangularBackground from "../UI/Animation/TriangularBackground";
 
-interface FeatureProps {
+interface ServicesProps {
   title?: string;
   description?: string;
   icon?: React.ReactNode;
@@ -12,65 +11,50 @@ interface FeatureProps {
 }
 
 
-export const FeaturesSection: React.FC<FeatureProps>= (
+export const ServicesSection: React.FC<ServicesProps>= (
   {className}
 ) =>{
-  const features = [
-    {
-      title: "Built for developers",
-      description:
-        "Built for engineers, developers, dreamers, thinkers and doers.",
-      icon: <Code />,
-    },
-    {
-      title: "Ease of use",
-      description:
-        "It's as easy as using an Apple, and as expensive as buying one.",
-      icon: <Code />,
-    },
-    {
-      title: "Pricing like no other",
-      description:
-        "Our prices are best in the market. No cap, no lock, no credit card required.",
-      icon: <Code />,
-    },
-    {
-      title: "100% Uptime guarantee",
-      description: "We just cannot be taken down by anyone.",
-      icon: <Code />,
-    },
-    {
-      title: "Multi-tenant Architecture",
-      description: "You can simply share passwords instead of buying new seats",
-      icon: <Code />,
-    },
-    {
-      title: "24/7 Customer Support",
-      description:
-        "We are available a 100% of the time. Atleast our AI Agents are.",
-      icon: <Code />,
-    },
-    {
-      title: "Money back guarantee",
-      description:
-        "If you donot like EveryAI, we will convince you to like us.",
-      icon: <Code />,
-    },
-    {
-      title: "And everything else",
-      description: "I just ran out of copy ideas. Accept my sincere apologies",
-      icon: <Code />,
-    },
-  ];
+   const services = [
+     {
+       icon: <Settings className="w-8 h-8" />,
+       title: "Conseil et stratégie IT",
+       description: "Optimisation de votre infrastructure technologique pour une performance maximale.",
+     },
+     {
+       icon: <Shield className="w-8 h-8" />,
+       title: "Réseaux et cybersécurité",
+       description: "Protection avancée de vos données et systèmes contre les menaces numériques.",
+     },
+     {
+       icon: <Cloud className="w-8 h-8" />,
+       title: "Solutions cloud et hébergement",
+       description: "Migration et gestion cloud pour une infrastructure flexible et évolutive.",
+     },
+     {
+       icon: <Code className="w-8 h-8" />,
+       title: "Développement et intégration",
+       description: "Solutions logicielles sur mesure adaptées à vos besoins spécifiques.",
+     },
+     {
+       icon: <Users className="w-8 h-8" />,
+       title: "Support et maintenance IT",
+       description: "Assistance technique 24/7 pour garantir la continuité de vos opérations.",
+     }
+   ];
   return (
-    <div className={`${className} grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  relative z-10 py-10 max-w-7xl mx-auto `}>
-      {features.map((feature, index) => (
-        <Feature key={feature.title} {...feature} index={index} />
-      ))}
-    </div>
+    <section className="flex flex-col items-center backdrop-blur-xs px-4 justify-center scroll-mt-px w-screen h-svh overflow-hidden">
+
+        <h2 className="text-center text-white">Services</h2>
+        <div className={`${className} container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  relative z-10 py-10 max-w-7xl mx-auto `}>
+          {services.map((services, index) => (
+            <Services key={services.title} {...services} index={index} />
+          ))}
+        </div>
+
+    </section>
   );
 }
-const Feature : React.FC<FeatureProps> = ({
+const Services : React.FC<ServicesProps> = ({
   title,
   description,
   icon,
@@ -79,27 +63,27 @@ const Feature : React.FC<FeatureProps> = ({
   return (
     <div
       className={cn(
-        "flex flex-col lg:border-r  py-10 relative group/feature dark:border-neutral-800",
+        "flex flex-col lg:border-r  py-10 relative group/Services dark:border-neutral-800",
         (index === 0 || index === 4) && "lg:border-l dark:border-neutral-800",
-        index < 4 && "lg:border-b dark:border-neutral-800"
+        index < 4 && "lg:border-b dark:border-it4a-primary/20"
       )}
     >
       {index < 4 && (
-        <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-t from-neutral-100 dark:from-neutral-800 to-transparent pointer-events-none" />
+        <div className="opacity-0 group-hover/Services:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-t from-neutral-100 dark:from-neutral-800 to-transparent pointer-events-none" />
       )}
       {index >= 4 && (
-        <div className="opacity-0 group-hover/feature:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-b from-neutral-100 dark:from-neutral-800 to-transparent pointer-events-none" />
+        <div className="opacity-0 group-hover/Services:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-b from-neutral-100 dark:from-neutral-800 to-transparent pointer-events-none" />
       )}
-      <div className="mb-4 relative z-10 px-10 text-neutral-600 dark:text-neutral-400">
+      <div className="mb-4 relative z-10 px-10 dark:text-neutral-400 text-neutral-900">
         {icon}
       </div>
       <div className="text-lg font-bold mb-2 relative z-10 px-10">
-        <div className="absolute left-0 inset-y-0 h-6 group-hover/feature:h-8 w-1 rounded-tr-full rounded-br-full bg-neutral-300 dark:bg-neutral-700 group-hover/feature:bg-blue-500 transition-all duration-200 origin-center" />
-        <span className="group-hover/feature:translate-x-2 transition duration-200 inline-block text-neutral-800 dark:text-neutral-100">
+        <div className="absolute left-0 inset-y-0 h-6 group-hover/Services:h-8 w-1 rounded-tr-full rounded-br-full bg-neutral-300 dark:bg-neutral-700 group-hover/Services:bg-blue-500 transition-all duration-200 origin-center" />
+        <span className="group-hover/Services:translate-x-2 transition duration-200 inline-block text-neutral-800 dark:text-neutral-100">
           {title}
         </span>
       </div>
-      <p className="text-sm text-neutral-600 dark:text-neutral-300 max-w-xs relative z-10 px-10">
+      <p className="text-sm text-neutral-900 dark:text-neutral-300 max-w-xs relative z-10 px-10">
         {description}
       </p>
     </div>
@@ -107,5 +91,5 @@ const Feature : React.FC<FeatureProps> = ({
 };
 
 
-export default FeaturesSection;
+export default ServicesSection;
 

@@ -123,7 +123,7 @@ const SplitText: React.FC<SplitTextProps> = ({
   ]);
 
   return (
-    <p
+    <span
       ref={ref}
       className={`split-parent ${className}`}
       style={{
@@ -135,7 +135,7 @@ const SplitText: React.FC<SplitTextProps> = ({
       }}
     >
       {text}
-    </p>
+    </span>
   );
 };
 

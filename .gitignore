@@ -1,8 +1,7 @@
+
+#directory
 .vscode/
-
 .qodo/
-
-
 
 # build output
 dist/
