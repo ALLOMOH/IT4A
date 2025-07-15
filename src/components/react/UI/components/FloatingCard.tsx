@@ -9,7 +9,7 @@ interface FloationgCardProst {
 const FloatingCard : React.FC<FloationgCardProst> = ({ children, delay = 0 }) => {
   return (
     <div 
-      className="transform transition-all duration-700 hover:scale-105 hover:-translate-y-2"
+      className="grid  transform transition-all duration-700 hover:scale-105 hover:-translate-y-2 "
       style={{
         animation: `float 6s ease-in-out infinite ${delay}s`,
       }}

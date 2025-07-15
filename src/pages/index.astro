@@ -25,8 +25,8 @@ import SectorsActiviter from '../components/react/sections/SectorsActiviter';
 ---
 
 <Layout title="ITE4africa">
-  <Hero client:load/>
+  <Hero  client:load/>
+  <Services client:idle/>
   <SectorsActiviter client:load/>
-  <Services className="backdrop-blur-xs" client:idle/>
-  <CtaSection client:only/>
+  <!-- <CtaSection  client:only/> -->
 </Layout>

@@ -1,45 +1,34 @@
 import FloatingCard from "../UI/components/FloatingCard";
-import ChromaGrid from "../UI/components/ChromaGrid";
+import ChromaGrid, { type ChromaItem } from "../UI/components/ChromaGrid";
+import TitleDescript from "../UI/components/TitleDescript";
+import SanteImage from "/image/sections/image-service-sante.jpg?url";
+import BanckImage from "/image/sections/image-service-banck.jpg?url";
+import EcomImage from "/image/sections/image-service-ecommerce.jpg?url";
+import LogistiqueImage from "/image/sections/image-service-logistique.jpg?url";
+import NetworkImage from "/image/sections/image-service-network.jpg?url";
+import SecurityImage from "/image/sections/image-service-security.jpg?url";
+import TriangularBackground from "../UI/Animation/TriangularBackground";
 
 
 export default function SectorActivitet(){
-    const sectors = [
-    { name: "Santé", image: "👨‍⚕️" },
-    { name: "Finance & Banque", image: "💼" },
-    { name: "Éducation", image: "🎓" },
-    { name: "Télécommunications", image: "📡" },
-    { name: "E-commerce", image: "🛒" },
-    { name: "Secteur Public", image: "🏛️" },
-    { name: "Logistique & Transport", image: "🚚" }
+    const sectors: ChromaItem[] = [
+    { title: "Santé", image: SanteImage },
+    { title: "Finance & Banque", image: BanckImage },
+    { title: "Télécommunications", image: NetworkImage },
+    { title: "Securite", image: SecurityImage },
+    { title: "E-commerce", image: EcomImage },
+    { title: "Logistique & Transport", image: LogistiqueImage }
   ];
     
   return(
-      <section className="py-20 px-4 bg-gradient-to-r from-[#1d3446]/50 to-[#0a84c1]/50 backdrop-blur-lg">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl dark:text-white text-black sm:text-2xl mb-6">
-              Secteurs d'<span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f1ca13] to-[#ff7f11]">Expertise</span>
-            </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Nous accompagnons les entreprises de tous secteurs avec des technologies de pointe
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6">
-            {sectors.map((sector, index) => (
-              <FloatingCard key={index} delay={index * 0.1}>
-                <div className="group relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-lg rounded-xl p-6 border border-white/10 hover:border-[#f1ca13]/50 transition-all duration-500 hover:shadow-xl hover:shadow-[#f1ca13]/20 text-center">
-                  <div className="text-4xl mb-4 group-hover:scale-125 transition-transform duration-300">
-                    {sector.image}
-                  </div>
-                  <h3 className="text-sm font-semibold group-hover:text-[#f1ca13] transition-colors duration-300">
-                    {sector.name}
-                  </h3>
-                </div>
-              </FloatingCard>
-            ))}
-          </div>
-        </div>
-      </section>
+        <TriangularBackground className="bg-transparent w-full" fadeSpeed={20} lineOpacity={100}  pointCount={100} theme="dark">
+          <section className=" w-full py-10 px-4 bg-gradient-to-r from-it4a-primary/500 via-it4a-secondary to-it4a-orange/50">
+
+            <div className="container flex flex-col itmes-center justify-center gap-1 max-w-7xl mx-auto">
+              <TitleDescript title="Secteurs It d'Expertise" descript="Nous accompagnons les entreprises de tous secteurs avec des technologies de pointe"/>
+              <ChromaGrid className="bg-transparent backdrop-blur-xs p-4 rounded-2xl place-items-center font-Poppins" items={sectors}/>
+            </div>
+          </section>
+        </TriangularBackground>
   );
 }

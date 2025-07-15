@@ -45,10 +45,10 @@ const  {
   </head>
   
   
-  <body class="  bg-gradient-to-b from-it4a-secondary via-neutral-800 to-it4a-primary/80 overflow-x-hidden dark">
+  <body class="bg-gradient-to-b from-it4a-secondary via-neutral-800 to-it4a-primary/80 box-border">
     <AnimatedNetworkBackground client:only/>
     <Header 
-		client:load 
+		client:load
     className="fixed"
     logo="/WhiteLogo.png" 
     navItems={
@@ -81,11 +81,10 @@ const  {
       }
       ]
     } 
-    ctaButton={{ label: "Contactez-nous", onClick: () => window.location.href = "mailto:alex@gmail.com" }} 
-    />
-    <main class=" flex items-center flex-col justify-center">
+    ctaButton={{ label: "Contactez-nous", onClick: () => window.location.href = "mailto:alex@gmail.com" }} />
+    <main class="snap-mandatory flex items-center flex-col justify-center">
       <slot />
     </main>
-    <Footer bgGradient="bg-transparent " client:load/>
+    <Footer bgGradient="bg-transparent backdrop-blur-xs" client:load/>
   </body>
 </html>

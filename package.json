@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "-": "^0.0.1",
     "@astrojs/react": "^4.3.0",
     "@lucide/astro": "^0.525.0",
     "@react-three/drei": "^10.4.2",
@@ -22,6 +23,9 @@
     "@types/react-dom": "^19.1.6",
     "astro": "^5.10.1",
     "clsx": "^2.1.1",
+    "embla-carousel-autoplay": "^8.6.0",
+    "embla-carousel-fade": "^8.6.0",
+    "embla-carousel-react": "^8.6.0",
     "framer-motion": "^12.23.0",
     "gsap": "^3.13.0",
     "lucide-react": "^0.525.0",

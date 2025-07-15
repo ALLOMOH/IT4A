@@ -179,14 +179,14 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
             style={{
               background:
                 "radial-gradient(circle at var(--mouse-x) var(--mouse-y), var(--spotlight-color), transparent 70%)",
-            }}
+            } as React.CSSProperties } 
           />
-          <div className="relative z-10 flex-1 p-[10px] box-border">
+          <div className="relative z-10 flex-1  p-[10px] box-border">
             <img
               src={c.image}
               alt={c.title}
               loading="lazy"
-              className="w-full h-full object-cover rounded-[10px]"
+              className="w-full h-full object-cover md:aspect-square aspect-video rounded-[10px]"
             />
           </div>
           <footer className="relative z-10 p-3 text-white font-sans grid grid-cols-[1fr_auto] gap-x-3 gap-y-1">

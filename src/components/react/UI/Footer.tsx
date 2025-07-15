@@ -1,8 +1,10 @@
 // src/components/Footer.tsx
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import TriangularBackground from './Animation/TriangularBackground';
 import logo  from '/WhiteLogoH.png?url';
+import ButtonFloating from './components/ButtonFloating';
+import { User } from 'lucide-react';
 interface FooterSection {
   title: string;
   links: { label: string; href: string; }[];
@@ -93,17 +95,13 @@ const Footer: React.FC<FooterProps> = ({
   newsletterButtonText = "S'inscrire",
   newsletterDescription = "Recevez nos dernières actualités et offres spéciales",
   className = "",
-  bgGradient = "bg-gradient-to-br from-slate-900 to-gray-900",
+  bgGradient = "bg-gradient-to-br from-it4a-secondary/20 to-it4a-secondary/90",
   textColor = "text-white",
-  linkHoverColor = "hover:text-blue-400",
+  linkHoverColor = "hover:text-it4a-primary",
   accentColor = "text-blue-400"
 }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [isNearFooter, setIsNearFooter] = useState(false);
-  const [isDack,setIsDack] = useState(false);
+  
   const footerRef = useRef<HTMLDivElement>(null);
-
-
 
   
   // Animation variants
@@ -126,98 +124,62 @@ const Footer: React.FC<FooterProps> = ({
     }
   };
 
-  const scrollButtonVariants = {
-    hidden: { opacity: 0, scale: 0.8, y: 20 },
-    visible: { opacity: 1, scale: 1, y: 0 },
-    hover: { scale: 1.1, backgroundColor: '#3b82f6' },
-    tap: { scale: 0.9 }
-  };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      // Vérifier si l'utilisateur a défilé de plus de 20px
-      setIsVisible(window.scrollY > 20);
-      
-      // Vérifier si l'utilisateur est proche du footer
-      if (footerRef.current) {
-        const footerRect = footerRef.current.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        
-        // Si le haut du footer est visible dans la fenêtre
-        setIsNearFooter(footerRect.top < windowHeight - 100);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-
-    
 
 
-  }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
 
   return (
  
 
-    <TriangularBackground theme='dark' >
+    <TriangularBackground className="w-[100%]" theme='dark' >
+      <ButtonFloating footer={footerRef}/>
       <footer
         ref={footerRef}
         className={`${bgGradient} ${textColor} pt-16 pb-8 relative ${className}`}
       >
-        {/* Bouton flottant "Retour en haut" */}
-        <AnimatePresence>
-          {isVisible && (
-            <motion.button
-              className={`fixed z-50 w-14 h-14 rounded-full bg-blue-500 text-white shadow-xl flex items-center justify-center
-                ${isNearFooter ? 'bottom-24' : 'bottom-8'} left-1/2 transform -translate-x-1/2`}
-              onClick={scrollToTop}
-              variants={scrollButtonVariants}
-              initial="hidden"
-              animate="visible"
-              exit="hidden"
-              whileHover="hover"
-              whileTap="tap"
-              aria-label="Remonter en haut de la page"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-              </svg>
-      
-              {/* Animation de pulsation pour attirer l'attention */}
-              <motion.div
-                className="absolute inset-0 rounded-full bg-blue-500 opacity-50"
-                animate={{
-                  scale: [1, 1.2, 1],
-                  opacity: [0.5, 0, 0.5]
-                }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
-            </motion.button>
-          )}
-        </AnimatePresence>
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        <div className="custom-shape-divider-top-1752494969">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <rect x="1200" height="3.6"></rect>
+          <rect height="3.6"></rect>
+          <path d="M0,0V3.6H580.08c11,0,19.92,5.09,19.92,13.2,0-8.14,8.88-13.2,19.92-13.2H1200V0Z" className="shape-fill"></path>
+        </svg>
+      </div>
+      <style>
+        {`
+        .custom-shape-divider-top-1752494969 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1752494969 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 224px;
+}
+
+.custom-shape-divider-top-1752494969 .shape-fill {
+    fill: #f1ca13;
+}
+
+        
+        `}
+      </style>
+         <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:flex lg:justify-evenly  gap-10 mb-12">
             {/* Colonne Logo et Description */}
             <motion.div
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
-              className="lg:col-span-1"
+              className="aspect-auto w-2xs"
             >
-              <motion.div variants={itemVariants} className="mb-6">
-                <img src={typeof logo === 'string' ? logo : (logo as { src: string }).src} alt="logo Ite4a"/>
+              <motion.div variants={itemVariants} className="mb-2">
+                <img className='object-center object-cover aspect-video' src={typeof logo === 'string' ? logo : (logo as { src: string }).src} alt="logo Ite4a"/>
               </motion.div>
       
               <motion.p variants={itemVariants} className="text-gray-400 mb-6">
@@ -333,7 +295,7 @@ const Footer: React.FC<FooterProps> = ({
             </motion.div>
           </div>
           {/* Divider */}
-          <div className="border-t border-gray-800 my-8"></div>
+          <div className="border-t border-it4a-primary my-8"></div>
           {/* Bas de footer */}
           <div className="flex flex-col md:flex-row justify-between items-center">
             <motion.p
@@ -345,7 +307,6 @@ const Footer: React.FC<FooterProps> = ({
             >
               {copyrightText}
             </motion.p>
-      
             <div className="flex space-x-6">
               {legalLinks.map((link, index) => (
                 <motion.a
