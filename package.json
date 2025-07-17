@@ -12,6 +12,7 @@
     "-": "^0.0.1",
     "@astrojs/react": "^4.3.0",
     "@lucide/astro": "^0.525.0",
+    "@radix-ui/themes": "^3.2.1",
     "@react-three/drei": "^10.4.2",
     "@react-three/fiber": "^9.1.4",
     "@tailus/themer": "^0.1.8",
@@ -29,8 +30,10 @@
     "framer-motion": "^12.23.0",
     "gsap": "^3.13.0",
     "lucide-react": "^0.525.0",
+    "radix-ui": "^1.4.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "resend": "^4.6.0",
     "tailwind-merge": "^3.3.1",
     "tailwindcss": "^4.1.11",
     "three": "^0.178.0"

@@ -1,0 +1,258 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { 
+
+    Network, 
+    Shield, 
+    Wrench, 
+    Cloud, 
+    Wifi, 
+    Server, 
+    Monitor, 
+    Lock, 
+    CheckCircle, 
+    ArrowRight, 
+} from "lucide-react";
+
+const services = [
+    {
+        icon: Network,
+        title: "Conception & Installation de Réseaux",
+        description: "Mise en place de réseaux LAN, WAN et Wi-Fi adaptés à votre activité",
+        features: [
+            "Étude et conception sur mesure",
+            "Câblage structuré professionnel",
+            "Configuration des équipements réseau",
+            "Documentation technique complète",
+            "Formation de vos équipes",
+            "Garantie sur matériel et installation",
+        ],
+        color: "from-blue-500 to-blue-600",
+        iconBg: "bg-blue-100",
+        iconColor: "text-blue-600",
+    },
+    {
+        icon: Shield,
+        title: "Audit et Sécurité des Réseaux",
+        description: "Analyse de l'existant, détection de vulnérabilités et recommandations",
+        features: [
+            "Audit complet de sécurité",
+            "Test de pénétration",
+            "Mise en conformité RGPD",
+            "Surveillance en temps réel",
+            "Plan de reprise d'activité",
+            "Formation sensibilisation cyber",
+        ],
+        color: "from-green-500 to-green-600",
+        iconBg: "bg-green-100",
+        iconColor: "text-green-600",
+    },
+    {
+        icon: Wrench,
+        title: "Maintenance & Support Technique",
+        description: "Interventions préventives et curatives avec garantie de réactivité",
+        features: [
+            "Support technique 24/7",
+            "Maintenance préventive",
+            "Interventions sur site",
+            "Assistance à distance",
+            "Contrats SLA personnalisés",
+            "Monitoring proactif",
+        ],
+        color: "from-orange-500 to-orange-600",
+        iconBg: "bg-orange-100",
+        iconColor: "text-orange-600",
+    },
+    {
+        icon: Cloud,
+        title: "Virtualisation & Infrastructure Cloud",
+        description: "Optimisez vos ressources IT avec des solutions cloud fiables et sécurisées",
+        features: [
+            "Migration vers le cloud",
+            "Virtualisation serveurs",
+            "Solutions hybrides",
+            "Sauvegarde automatisée",
+            "Haute disponibilité",
+            "Optimisation des coûts",
+        ],
+        color: "from-purple-500 to-purple-600",
+        iconBg: "bg-purple-100",
+        iconColor: "text-purple-600",
+    },
+];
+
+const additionalServices = [
+    {
+        icon: Wifi,
+        title: "Wi-Fi Professionnel",
+        description: "Solutions Wi-Fi haute performance pour entreprises",
+    },
+    {
+        icon: Server,
+        title: "Infrastructure Serveurs",
+        description: "Installation et gestion de serveurs d'entreprise",
+    },
+    {
+        icon: Monitor,
+        title: "Monitoring & Supervision",
+        description: "Surveillance continue de votre infrastructure IT",
+    },
+    {
+        icon: Lock,
+        title: "Sécurité Avancée",
+        description: "Protection multicouche contre les cybermenaces",
+    },
+];
+
+function createPageUrl(page: string) {
+    return "/" + page.toLowerCase();
+}
+---
+
+<Layout title="ITE4A | Service">
+    <main class="bg-white">
+        <!-- Hero Section -->
+        <section class="relative bg-gradient-to-br from-blue-50 via-white to-orange-50 py-20 lg:py-32">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h1 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+                        Nos Services
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-orange-500"> IT Experts</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                        Des solutions complètes pour transformer et optimiser votre infrastructure informatique
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Services -->
+        <section class="py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="space-y-20">
+                    {services.map((service, index) => (
+                        <div class={`grid lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? "lg:grid-flow-col-dense" : ""}`}>
+                            <div class={index % 2 === 1 ? "lg:col-start-2" : ""}>
+                                <div class="bg-white border-none shadow-2xl rounded-3xl p-8">
+                                    <div class="flex items-center space-x-4 mb-4">
+                                        <div class={`w-16 h-16 rounded-full flex items-center justify-center ${service.iconBg}`}>
+                                            {service.icon}
+                                        </div>
+                                        <div class="text-2xl lg:text-3xl font-bold text-gray-900">{service.title}</div>
+                                    </div>
+                                    <p class="text-lg text-gray-600 leading-relaxed">{service.description}</p>
+                                    <div class="space-y-3 mt-6">
+                                        {service.features.map((feature) => (
+                                            <div class="flex items-center space-x-3">
+                                                {CheckCircle}
+                                                <span class="text-gray-700">{feature}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class={index % 2 === 1 ? "lg:col-start-1" : ""}>
+                                <div class="relative">
+                                    <div class={`absolute inset-0 bg-gradient-to-r ${service.color} rounded-3xl transform ${index % 2 === 0 ? "rotate-6" : "-rotate-6"}`}></div>
+                                    <img
+                                        src={`https://images.unsplash.com/photo-${
+                                            index === 0
+                                                ? "1558494949-ef010cbdcc31"
+                                                : index === 1
+                                                    ? "1563986768494-4dee2763ff3f"
+                                                    : index === 2
+                                                        ? "1581091226825-a6a2a5aee158"
+                                                        : "1451187580459-43d4fe3f1e48"
+                                        }?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80`}
+                                        alt={service.title}
+                                        class="relative rounded-3xl shadow-2xl w-full h-80 object-cover"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+
+        <!-- Additional Services -->
+        <section class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+                        Services complémentaires
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                        Une gamme étendue de services pour répondre à tous vos besoins IT
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    {additionalServices.map((service) => (
+                        <div class="bg-white border-none shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 rounded-3xl p-8 text-center">
+                            <div class="w-16 h-16 mx-auto mb-6 bg-gray-50 rounded-full flex items-center justify-center">
+                                {service.icon}
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
+                            <p class="text-gray-600">{service.description}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section class="py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+                        Notre méthode de travail
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                        Un processus structuré pour garantir le succès de votre projet
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-4 gap-8">
+                    {[
+                        { step: "01", title: "Analyse", description: "Audit de votre infrastructure existante" },
+                        { step: "02", title: "Conception", description: "Élaboration de solutions sur mesure" },
+                        { step: "03", title: "Déploiement", description: "Installation et configuration expertes" },
+                        { step: "04", title: "Support", description: "Maintenance et accompagnement continu" },
+                    ].map((item) => (
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto mb-6 bg-gradient-to-r from-blue-600 to-orange-500 rounded-full flex items-center justify-center">
+                                <span class="text-white font-bold text-xl">{item.step}</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
+                            <p class="text-gray-600">{item.description}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-20 bg-gradient-to-r from-blue-600 to-blue-700">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl lg:text-4xl font-bold text-white mb-6">
+                    Besoin d'une solution IT sur mesure ?
+                </h2>
+                <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+                    Nos experts analysent vos besoins et vous proposent la solution la plus adaptée à votre activité et votre budget.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href={createPageUrl("Contact")}>
+                        <button class="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 text-lg h-auto rounded-lg flex items-center justify-center">
+                            Demander un devis gratuit
+                            {ArrowRight}
+                        </button>
+                    </a>
+                    <a href={createPageUrl("About")}>
+                        <button class="border-white text-white hover:bg-white hover:text-blue-600 px-8 py-3 text-lg h-auto rounded-lg flex items-center justify-center" style="border:2px solid white;">
+                            Découvrir notre équipe
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+</Layout>
