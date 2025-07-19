@@ -4,8 +4,9 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
+    "dev:share": "concurrently \"astro dev\" \"ngrok http 4321\"",
     "build": "astro build",
-    "preview": "astro preview",
+    "preview": "astro preview",  
     "astro": "astro"
   },
   "dependencies": {

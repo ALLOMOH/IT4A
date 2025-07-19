@@ -14,7 +14,7 @@ import {
 import ScrollReveal from "../UI/Animation/ScrollReveal";
 import CountUp from "../UI/components/CountUpAnimation";
 
-export default function About() {
+export default function Abouts() {
   const teamMembers = [
     {
       name: "Jean-Claude Kouassi",
