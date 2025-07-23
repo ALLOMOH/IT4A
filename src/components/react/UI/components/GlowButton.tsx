@@ -20,7 +20,7 @@ const GlowButton: React.FC<GlowButtonProps> = (props) => {
   } = props;
 
   const baseClasses =
-    "px-8 py-4 rounded-lg font-bold transition-all duration-300 transform hover:scale-105 active:scale-95 relative overflow-hidden group";
+    "px-8 py-4 rounded-lg font-bold transition-all duration-300 transform hover:scale-105 active:scale-95 relative overflow-hidden group relative z-10";
   const variants: Record<string, string> = {
     primary:
       "bg-gradient-to-r from-[#f1ca13] to-[#ff7f11] text-[#1d3446] hover:shadow-2xl hover:shadow-[#f1ca13]/50",
@@ -50,9 +50,9 @@ const GlowButton: React.FC<GlowButtonProps> = (props) => {
       className={`${baseClasses} ${variants[variant]} ${className}`}
       {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}
     >
-      <span className="relative z-10">
+    
         {children}
-      </span>
+      
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
     </button>
   );

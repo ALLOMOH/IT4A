@@ -94,29 +94,29 @@ const Services: React.FC<ServicesProps> = ({
   index = 0,
 }) => {
   return (
-    <div
+    <div id="services"
       className={cn(
-        "flex flex-col lg:border-r  py-10 relative group/Services dark:border-neutral-800 bg-white/20",
+        "flex flex-col lg:border-r  py-10 relative group/Services hover:border-neutral-800 bg-white/20 text-neutral-300 hover:text-neutral-900",
         (index === 0 || index === 4) && "lg:border-l dark:border-neutral-800",
-        index < 4 && "lg:border-b dark:border-it4a-primary/20"
+        index < 4 && "lg:border-b border-it4a-primary/20 "
       )}
     >
       {index < 4 && (
-        <div className="opacity-0 group-hover/Services:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-t from-neutral-100 dark:from-neutral-800 to-transparent pointer-events-none" />
+        <div className="opacity-0 group-hover/Services:opacity-100  transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-t from-neutral-100/50 to-transparent pointer-events-none" />
       )}
       {index >= 4 && (
-        <div className="opacity-0 group-hover/Services:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-b from-neutral-100 dark:from-neutral-800 to-transparent pointer-events-none" />
+        <div className="opacity-0 group-hover/Services:opacity-100 group-hover  transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-b from-neutral-100/50 to-transparent pointer-events-none" />
       )}
-      <div className="mb-4 relative z-10 px-10 dark:text-neutral-400 text-neutral-900">
+      <div className="mb-4 relative z-10 px-10 text-[#f1ca13]  ">
         {icon}
       </div>
       <div className="text-xs md:text-lg font-bold mb-2 relative z-10 px-10">
         <div className="absolute left-0 inset-y-0 h-6 group-hover/Services:h-8 w-1 rounded-tr-full rounded-br-full bg-neutral-300 dark:bg-neutral-700 group-hover/Services:bg-it4a-primary transition-all duration-200 origin-center" />
-        <span className="group-hover/Services:translate-x-2 transition duration-200 inline-block text-neutral-800 dark:text-neutral-100">
+        <span className="group-hover/Services:translate-x-2 transition duration-200 inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#f1ca13] to-[#ff7f11]">
           {title}
         </span>
       </div>
-      <p className="text-sm text-neutral-900 dark:text-neutral-300 max-w-xs relative z-10 px-10">
+      <p className="text-sm  max-w-xs relative z-10 px-10">
         {description}
       </p>
     </div>

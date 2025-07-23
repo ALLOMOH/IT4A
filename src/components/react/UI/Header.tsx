@@ -1,9 +1,8 @@
 // src/components/Header.tsx
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import GlowButton from './components/GlowButton';
-import StarBorder from './Text/StartBorder';
-import { isSlotString } from 'astro/runtime/server/render/slot.js';
+import GlowButton from '@/components/react/UI/components/GlowButton';
+import StarBorder from '@/components/react/UI/Text/StartBorder';
 
 
 
@@ -19,7 +18,8 @@ interface HeaderProps {
   navItems: NavItem[];
   ctaButton: {
     label: string;
-    onClick: () => void;
+    onClick?: () => void;
+    href?:string;
   };
   // Vous pouvez ajouter d'autres props si nécessaire
   className?: string;
@@ -92,18 +92,7 @@ const Header: React.FC<HeaderProps> = ({
     };
   }, [isMobileMenuOpen]);
 
-  // Fonction pour faire défiler vers une section
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      const headerHeight = headerRef.current?.offsetHeight || 0;
-      const y = element.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-      
-      window.scrollTo({ top: y, behavior: 'smooth' });
-      setIsMobileMenuOpen(false);
-      setActiveSubMenu(null);
-    }
-  };
+ 
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
@@ -172,26 +161,27 @@ const Header: React.FC<HeaderProps> = ({
                 onMouseEnter={() => setActiveSubMenu(item.label)}
                 onMouseLeave={() => setActiveSubMenu(null)}
               >
-                <motion.button
+                <motion.a
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  onClick={() => scrollToSection(item.href)}
+                  href={item.href}
                   className="dark:text-white/70 text-white    text-shadow-white  hover:text-it4a-primary font-medium transition-colors group relative py-2"
                 >
                   {item.label}
                   <span className={`absolute bottom-0 left-0 w-0 h-0.5 bg-it4a-primary transition-all duration-300 group-hover:w-full`}></span>
-                </motion.button>
+                </motion.a>
                 
                 {/* Sous-menu */}
                 {item.subItems && activeSubMenu === item.label && (
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
-                    animate={{opacity:1, y:40}}
+                    animate={{opacity:1, y:30}}
                     className={`absolute backdrop-blur-2xl  top-0 left-0 mt-0 w-48 text-white  outline-white  border-l border-l-it4a-primary shadow-it4a-primary rounded-md py-2 z-30  ${isScrolled && `bg-it4a-secondary/60 backdrop-blur-xs` } `}
                   >
                     {item.subItems.map((subItem) => (
                       <motion.div
                         variants={itemVariants}
+                        className='flex items-center flex-col'
                         whileHover={
                           {x:5}
                         }
@@ -199,11 +189,7 @@ const Header: React.FC<HeaderProps> = ({
                         <a
                           key={subItem.label}
                           href={`#${subItem.href}`}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            scrollToSection(subItem.href);
-                          }}
-                          className="flex itmes-start px-4 py-2  hover:bg-it4a-secondary hover:text-it4a-primary hover:border-b border-it4a-primary group-hover: transition-colors"
+                          className="flex flex-1 itmes-start px-4 py-2  hover:bg-it4a-secondary hover:text-it4a-primary hover:border-b border-it4a-primary group-hover: transition-colors w-[100%]"
                         >
                           <svg className="w-4 h-4 mt-1 mr-2 text-it4a-primary " fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
@@ -219,7 +205,7 @@ const Header: React.FC<HeaderProps> = ({
           </div>
           
           {/* Bouton CTA */}
-            <GlowButton href='mailto:info@ite4a.com' className='hidden md:block' variant='outline'>
+            <GlowButton href={ctaButton.href} onClick={ctaButton.onClick} className='hidden md:block' variant='outline'>
               {ctaButton.label}
             </GlowButton>
           
@@ -272,13 +258,13 @@ const Header: React.FC<HeaderProps> = ({
                 <ul className="space-y-2">
                   {navItems.map((item) => (
                     <li key={item.label} className="border-b border-it4a-primary/40 acitve:border-it4a-primary ">
-                      <button
+                      <a
+                        href={item.href}
                         onClick={() => {
                           if (item.subItems) {
                             setActiveSubMenu(activeSubMenu === item.label ? null : item.label);
-                          } else {
-                            scrollToSection(item.href);
-                          }
+                          } 
+                        
                         }}
                         className="w-full text-left text-white py-3 px-2 flex justify-between items-center  font-Poppins active:text-it4a-primary transition-colors .5s"
                       >
@@ -288,7 +274,7 @@ const Header: React.FC<HeaderProps> = ({
                             ▼
                           </span>
                         )}
-                      </button>
+                      </a>
                       
                       {item.subItems && activeSubMenu === item.label && (
                         <motion.ul
@@ -298,12 +284,12 @@ const Header: React.FC<HeaderProps> = ({
                         >
                           {item.subItems.map((subItem) => (
                             <li key={subItem.label}>
-                              <button
-                                onClick={() => scrollToSection(subItem.href)}
+                              <a
+                                href={subItem.href}
                                 className="w-full text-left py-2 px-2 text-white/80 hover:text-it4a-primary  hover:bg-it4a-secondary rounded transition-all .4s"
                               >
                                 {subItem.label}
-                              </button>
+                              </a>
                             </li>
                           ))}
                         </motion.ul>
@@ -312,7 +298,7 @@ const Header: React.FC<HeaderProps> = ({
                   ))}
                 </ul>
                 <GlowButton onClick={()=>{
-                    ctaButton.onClick();
+                    ctaButton.onClick?.();
                     setIsMobileMenuOpen(false);
                   }} className=' mt-6 w-full'>
                     {ctaButton.label}

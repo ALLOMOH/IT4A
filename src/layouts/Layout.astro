@@ -3,7 +3,8 @@ import "../styles/global.css";
 import Header from "../components/react/UI/Header";
 import Footer from '../components/react/UI/Footer';
 import AnimatedNetworkBackground from "../components/react/UI/Animation/AnimetedNetworkBackground";
-
+import "@radix-ui/themes/styles.css";
+import {Theme} from "@radix-ui/themes";
 
 
 export interface Props {
@@ -45,46 +46,46 @@ const  {
   </head>
   
   
-  <body class="bg-gradient-to-b from-it4a-secondary via-neutral-800 to-it4a-primary/80 box-border">
-    <AnimatedNetworkBackground client:only/>
-    <Header 
-		client:load
-    className="fixed"
-    logo="/WhiteLogo.png" 
-    navItems={
-      [ 
-      { 
-        label: "Accueil", href: "/" 
-      },
-      { 
-        label: "Services", href: "services",
-        subItems: [
-          {
-          label: "Web", href: "web" 
-          },
-          {
-          label: "CyberSecurity", href:"CyberSecurity"
-          },
-          {
-          label: "Reseau", href:"Reseau"
-          },
-          {
-          label: "Cloud", href:"Cloud"
-          },
+  <body class="bg-gradient-to-b from-it4a-secondary via-neutral-800 to-it4a-primary/80 box-border font-Poppins">
+      <AnimatedNetworkBackground client:only/>
+      <Header 
+      		client:load
+      className="fixed"
+      logo="/WhiteLogo.png"
+      navItems={
+        [
+        {
+          label: "Accueil", href: "/"
+        },
+        {
+          label: "Services", href: "#",
+          subItems: [
+            {
+            label: "Web", href: "web"
+            },
+            {
+            label: "CyberSecurity", href:"CyberSecurity"
+            },
+            {
+            label: "Reseau", href:"Reseau"
+            },
+            {
+            label: "Cloud", href:"Cloud"
+            },
+          ]
+        },
+        {
+          label: "À propos", href: "/about"
+        },
+        {
+          label:"Contact", href:"contact"
+        }
         ]
-      },
-      { 
-        label: "À propos", href: "/about" 
-      },
-      {
-        label:"Contact", href:"/Contact"
       }
-      ]
-    } 
-    ctaButton={{ label: "Contactez-nous", onClick: () => window.location.href = "mailto:alex@gmail.com" }} />
-    <main class="snap-mandatory flex items-center flex-col justify-center">
-      <slot />
-    </main>
-    <Footer bgGradient="bg-transparent backdrop-blur-xs" client:load/>
+      ctaButton={{ label: "Contactez-nous", onClick: () => window.location.href = "/contact/" }} />
+      <main class="snap-mandatory flex items-center flex-col justify-center">
+        <slot />
+      </main>
+      <Footer bgGradient="bg-transparent backdrop-blur-xs" client:load/>
   </body>
 </html>

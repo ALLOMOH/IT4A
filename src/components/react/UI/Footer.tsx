@@ -136,7 +136,7 @@ const Footer: React.FC<FooterProps> = ({
         ref={footerRef}
         className={`${bgGradient} ${textColor} pt-16 pb-8 relative ${className}`}
       >
-        <div className="custom-shape-divider-top-1752494969">
+      <div className="custom-shape-divider-top-1752494969">
         <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
           <rect x="1200" height="3.6"></rect>
           <rect height="3.6"></rect>

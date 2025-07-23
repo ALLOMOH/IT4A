@@ -1,16 +1,14 @@
 import { ChevronRight, Cloud, Code, Container, Loader, Network, Settings, Shield } from 'lucide-react';
 import GlowButton from '../UI/components/GlowButton';
 import NetworkBackground from '../UI/Animation/NetworkBackground';
-import CountUpAnimation from '../UI/components/CountUpAnimation';
 import FloatingCard from '../UI/components/FloatingCard';
-import backgroundHero from "/image/sections/homme_de_tir_moyen-travaillant-removebg-preview.png?url";
 import DecryptedText from "../UI/Text/DecryptedText";
 import CountUp from "../UI/Text/CountUp";
 import ShinyText from "../UI/Text/ShinyText";
 
 const Hero = () => {
   return (
-    <section className={ `box-border relative  w-full h-svh flex items-center justify-center px-4 backdrop-blur-xl md:backdrop-blur-none  md:px-4 py-20  md:py-40`}>
+    <section id="acceuil" className={ `box-border relative  w-full h-svh flex items-center justify-center px-4 backdrop-blur-xl md:backdrop-blur-none  md:px-4 py-100  md:py-40`}>
       <NetworkBackground 
         animationSpeed={5}
         baseColor={`#f1ca13`}
@@ -22,9 +20,9 @@ const Hero = () => {
       <div className={` px-2 max-w-7xl grid lg:grid-cols-2 gap-12 items-center relative z-10`}>
         <div className="space-y-2 lg:space-y-8">
           <div className="space-y-2 lg:space-y-2">
-            <h1 className="text-2xl md:text-5xl lg:text-4xl text-white leading-tight">
+            <h1 className="text-2xl font-bold md:text-5xl lg:text-4xl text-white leading-tight">
               <DecryptedText speed={70}    animateOn='view'  text={`IT Experts`} />
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#f1ca13] to-[#ff7f11]">
+              <span className="block font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#f1ca13] to-[#ff7f11]">
               <DecryptedText speed={70}   animateOn='view' text={`4 Africa`} />
               </span>
             </h1>
