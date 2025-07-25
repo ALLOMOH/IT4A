@@ -1,10 +1,7 @@
 // src/components/Header.tsx
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import GlowButton from '@/components/react/UI/components/GlowButton';
-import StarBorder from '@/components/react/UI/Text/StartBorder';
-
-
+import GlowButton from '@/components/react/UI/components/GlowButton'
 
 interface NavItem {
   label: string;
@@ -155,31 +152,32 @@ const Header: React.FC<HeaderProps> = ({
           {/* Navigation desktop */}
           <div className=" hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <div 
+              <ul 
                 key={item.label}
                 className="relative"
                 onMouseEnter={() => setActiveSubMenu(item.label)}
                 onMouseLeave={() => setActiveSubMenu(null)}
               >
-                <motion.a
+                <motion.li
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  href={item.href}
                   className="dark:text-white/70 text-white    text-shadow-white  hover:text-it4a-primary font-medium transition-colors group relative py-2"
                 >
-                  {item.label}
-                  <span className={`absolute bottom-0 left-0 w-0 h-0.5 bg-it4a-primary transition-all duration-300 group-hover:w-full`}></span>
-                </motion.a>
+                  <a href={item.href}>
+                    {item.label}
+                    <span className={`absolute bottom-0 left-0 w-0 h-0.5 bg-it4a-primary transition-all duration-300 group-hover:w-full`}></span>
+                  </a>
+                </motion.li>
                 
                 {/* Sous-menu */}
                 {item.subItems && activeSubMenu === item.label && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{opacity:1, y:30}}
+                  <motion.ul
+                    initial={{ opacity: 0, y: 0}}
+                    animate={{opacity:1, y:40}}
                     className={`absolute backdrop-blur-2xl  top-0 left-0 mt-0 w-48 text-white  outline-white  border-l border-l-it4a-primary shadow-it4a-primary rounded-md py-2 z-30  ${isScrolled && `bg-it4a-secondary/60 backdrop-blur-xs` } `}
                   >
                     {item.subItems.map((subItem) => (
-                      <motion.div
+                      <motion.li
                         variants={itemVariants}
                         className='flex items-center flex-col'
                         whileHover={
@@ -196,11 +194,11 @@ const Header: React.FC<HeaderProps> = ({
                           </svg>
                           {subItem.label}
                         </a>
-                      </motion.div>
+                      </motion.li>
                     ))}
-                  </motion.div>
+                  </motion.ul>
                 )}
-              </div>
+              </ul>
             ))}
           </div>
           
@@ -281,15 +279,19 @@ const Header: React.FC<HeaderProps> = ({
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: 'auto', opacity: 1 }}
                           className="pl-4 pb-2 space-y-2"
+
                         >
                           {item.subItems.map((subItem) => (
-                            <li key={subItem.label}>
-                              <a
+                            <li key={subItem.label} className='w-full text-left py-2 px-2 text-white/80 hover:text-it4a-primary  hover:bg-it4a-secondary rounded transition-all .4s'>
+                              <motion.a
+                                className='block'
+                                initial={{height:0,opacity:0}}
+                                animate={{height:'auto',opacity:1}}
+                                whileHover={{x:-3}}
                                 href={subItem.href}
-                                className="w-full text-left py-2 px-2 text-white/80 hover:text-it4a-primary  hover:bg-it4a-secondary rounded transition-all .4s"
                               >
                                 {subItem.label}
-                              </a>
+                              </motion.a>
                             </li>
                           ))}
                         </motion.ul>

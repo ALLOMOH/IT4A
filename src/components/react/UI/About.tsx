@@ -1,4 +1,3 @@
-import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { 
@@ -259,7 +258,7 @@ export default function About() {
                         <achievement.icon className="h-8 w-8" />
                       </motion.div>
                       <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                        <CountUp onStart={0}  onEnd={parseInt(achievement.count)} duration={2} />
+                        <CountUp to={achievement.count} duration={2} />
                       </h3>
                       <p className="text-gray-600">{achievement.description} </p>
                     </CardContent>
