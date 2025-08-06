@@ -1,11 +1,9 @@
 # Astro Starter Kit: Basics for IT4A
 
+Create a `.env` file in the project root with the following content:
 
-create a file .env
-/.env/
-RESEND_API_KEY=YOUR_API //for the contact
-
-
+```env
+RESEND_API_KEY=YOUR_API  // for the contact
 
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
 [![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
@@ -13,7 +11,10 @@ RESEND_API_KEY=YOUR_API //for the contact
 
 > 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+
+![IT4A Website Preview](./siteweb.png)`
+
+
 
 ## 🚀 Project Structure
 
