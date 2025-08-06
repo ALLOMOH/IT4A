@@ -3,15 +3,21 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from "@tailwindcss/vite";
 import react from '@astrojs/react';
 
+import vercel from '@astrojs/vercel';
+
 // https://astro.build/config
 export default defineConfig({
   output:'server',
   integrations: [react()],
+
   vite:{
     define:{
       'ssr':{
           noExternal: ['@react-email/components', 'react-email']
       },
+    webAnalytics: {
+      enabled: true,
+    },
     },
     plugins:[
       tailwindcss(),
@@ -32,4 +38,7 @@ export default defineConfig({
       // Ou spécifiquement votre domaine :
       // allowedHosts: ['thereby-scoop-wet-celebs.trycloudflare.com'],
     }
-}});
+},
+
+  adapter: vercel()
+});
