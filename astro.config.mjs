@@ -2,10 +2,12 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from "@tailwindcss/vite";
 import react from '@astrojs/react';
-import node from '@astrojs/node';
+import vercel from '@astrojs/vercel';
 // https://astro.build/config
-export default defineConfig({ // Ajoutez cette ligne
+export default defineConfig({
+  // Ajoutez cette ligne
   output:'server',
+
   integrations: [react()],
 
   vite:{
@@ -19,7 +21,5 @@ export default defineConfig({ // Ajoutez cette ligne
     ],
 },
 
-  adapter: node({
-    mode: 'standalone',
-  }),
+  adapter: vercel(),
 });

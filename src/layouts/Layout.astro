@@ -95,8 +95,8 @@ const {
       ctaButton={{ label: "Contactez-nous", href: "/contact" }}
     />
     <main class="snap-mandatory flex items-center flex-col justify-center" > 
-        <TracingBeam  client:only >
-          <slot transition:name="root" />
+        <TracingBeam client:only >
+          <slot/>
         </TracingBeam>
     </main>
     <Footer bgGradient="bg-transparent backdrop-blur-xs" client:load />
