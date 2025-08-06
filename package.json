@@ -14,8 +14,8 @@
   },
   "dependencies": {
     "-": "^0.0.1",
+    "@astrojs/node": "^9.3.3",
     "@astrojs/react": "^4.3.0",
-    "@astrojs/vercel": "^8.2.5",
     "@lucide/astro": "^0.525.0",
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/themes": "^3.2.1",

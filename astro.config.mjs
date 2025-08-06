@@ -2,9 +2,7 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from "@tailwindcss/vite";
 import react from '@astrojs/react';
-
-import vercel from '@astrojs/vercel';
-
+import node from '@astrojs/node';
 // https://astro.build/config
 export default defineConfig({
   output:'server',
@@ -15,30 +13,13 @@ export default defineConfig({
       'ssr':{
           noExternal: ['@react-email/components', 'react-email']
       },
-    webAnalytics: {
-      enabled: true,
-    },
     },
     plugins:[
       tailwindcss(),
     ],
-     server: {
-      host: true,
-      port: 4321,
-      // Permet tous les hosts pour le développement
-      // allowedHosts: true,
-      // Ou spécifiquement votre domaine :
-      // allowedHosts: [''],
-    },
-    preview: {
-      host: true,
-      port: 4321,
-      // Permet tous les hosts pour le preview
-      // allowedHosts: true,
-      // Ou spécifiquement votre domaine :
-      // allowedHosts: ['thereby-scoop-wet-celebs.trycloudflare.com'],
-    }
 },
 
-  adapter: vercel()
+  adapter: node({
+    mode: 'standalone',
+  }),
 });
