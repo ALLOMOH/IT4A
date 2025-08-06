@@ -1,32 +1,21 @@
 ---
 import Layout from '../layouts/Layout.astro';
-// import NetworkBackground  from '../components/react/NetworkBackground';
-// import ShinyText from '../components/react/UI/Text/ShinyText.js';
-// import TriangularBackground from '../components/react/UI/Animation/TriangularBackground';
-// import AnimatedNeworkBackground from '../components/react/UI/Animation/AnimetedNetworkBackground';
-// import {HeroSectionOne} from '../components/react/sections/HeroSection';
-// import NetworkBackground from '../components/react/UI/Animation/NetworkBackground';
-// import LightCommunicationBackground from '../components/react/UI/Animation/LightCommunicationBackground';
-// import {BackgroundLines} from "../components/uiAceternity/UI/Background/BackgroundLine.js";\
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 
 import Services from '@/components/react/sections/Services';
-
-// import TracingBeam from '../components/uiAceternity/UI/components/TracingBeam';
-
-
-
+import SectionAbout from '@/components/react/sections/SectionAbout';
 import Hero from '@/components/react/sections/Hero';
 import CtaSection from '@/components/react/sections/CtaSection';
 import SectorsActiviter from '@/components/react/sections/SectorsActiviter';
-
-
+import SectionPartner from '@/components/react/sections/SectionPartner';
 ---
 
 <Layout>
-  <Hero  client:load/>
-  <Services  client:idle/>
-  <SectorsActiviter client:load/>
-  <CtaSection  client:only/>
+    <Hero client:load/>
+    <Services client:load/>
+    <SectorsActiviter client:load/>
+    <SectionAbout client:only/>
+    <SectionPartner client:only/>
+    <CtaSection  client:only/>
 </Layout>

@@ -5,19 +5,21 @@ import FloatingCard from '../UI/components/FloatingCard';
 import DecryptedText from "../UI/Text/DecryptedText";
 import CountUp from "../UI/Text/CountUp";
 import ShinyText from "../UI/Text/ShinyText";
+import { motion } from 'framer-motion';
 
 const Hero = () => {
+
   return (
-    <section id="acceuil" className={ `box-border relative  w-full h-svh flex items-center justify-center px-4 backdrop-blur-xl md:backdrop-blur-none  md:px-4 py-100  md:py-110`}>
+    <motion.section initial={{x:-2, opacity:0 }} transition={{delay:.4}} whileInView={{x:0, opacity:1}} viewport={{once:true}} className=" `box-border relative  w-full h-svh flex items-center justify-center px-4   md:px-4 py-100  md:py-100 backdrop-blur-xs md:backdrop-blur-none ">
       <NetworkBackground 
         animationSpeed={5}
         baseColor={`#f1ca13`}
-        connectionDistance={20}
+        connectionDistance={10}
         mouseRepulsion={20}
         className='absolute z-0 sm:-z-10 h-full w-full top-0 left-0' 
       />
 
-      <div className={` px-2 max-w-7xl grid lg:grid-cols-2 gap-12 items-center relative z-10`}>
+      <div className={`px-2 max-w-7xl grid lg:grid-cols-2 gap-12 items-center relative z-10 `}>
         <div className="space-y-2 lg:space-y-8">
           <div className="space-y-2 lg:space-y-2">
             <h1 className="text-2xl font-bold md:text-7xl text-white leading-tight">
@@ -33,14 +35,14 @@ const Hero = () => {
             </p>
           </div>
 
-          <div className="flex text-xs flex-col sm:flex-row gap-4">
-              <GlowButton variant="primary" className="group">
+          <div className="flex text-xs md:text-xl flex-col sm:flex-row gap-4">
+              <GlowButton href='/about' variant="primary" className="group">
                 En savoir plus
                 <ChevronRight className="inline-block ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </GlowButton>
 
              <FloatingCard delay={15}>
-                <GlowButton variant="outline">
+                <GlowButton href='/services' variant="outline">
                   Nos services
                 </GlowButton>
              </FloatingCard>
@@ -76,7 +78,7 @@ const Hero = () => {
         </div> 
         */}
       </div>
-    </section>
+    </motion.section>
   );
 };
 

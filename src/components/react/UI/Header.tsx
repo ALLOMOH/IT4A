@@ -186,7 +186,7 @@ const Header: React.FC<HeaderProps> = ({
                       >
                         <a
                           key={subItem.label}
-                          href={`#${subItem.href}`}
+                          href={`${subItem.href}`}
                           className="flex flex-1 itmes-start px-4 py-2  hover:bg-it4a-secondary hover:text-it4a-primary hover:border-b border-it4a-primary group-hover: transition-colors w-[100%]"
                         >
                           <svg className="w-4 h-4 mt-1 mr-2 text-it4a-primary " fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -299,10 +299,10 @@ const Header: React.FC<HeaderProps> = ({
                     </li>
                   ))}
                 </ul>
-                <GlowButton onClick={()=>{
+                <GlowButton  href={`/contact`}  onClick={()=>{
                     ctaButton.onClick?.();
                     setIsMobileMenuOpen(false);
-                  }} className=' mt-6 w-full'>
+                  }}  className=' block items-center text-center mt-6 w-full'>
                     {ctaButton.label}
                 </GlowButton>
               </div>

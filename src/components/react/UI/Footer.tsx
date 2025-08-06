@@ -4,7 +4,9 @@ import { motion } from 'framer-motion';
 import TriangularBackground from './Animation/TriangularBackground';
 import logo  from '/WhiteLogoH.png?url';
 import ButtonFloating from './components/ButtonFloating';
-import { User } from 'lucide-react';
+import { containerVariants, itemVariants } from '@/components/variantionAnimtionMotion/variantMotion';
+import TransitionSVGSection from './components/TransitionSVGSection';
+
 interface FooterSection {
   title: string;
   links: { label: string; href: string; }[];
@@ -42,25 +44,25 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({
-  companyName = "VotreEntreprise",
+  companyName = "IT-Experts-4-Africa",
   description = "Nous transformons vos idées en solutions numériques innovantes. Notre équipe d'experts est dédiée à votre réussite.",
   sections = [
     {
       title: "Navigation",
       links: [
-        { label: "Accueil", href: "#" },
-        { label: "Services", href: "#services" },
-        { label: "Projets", href: "#projects" },
-        { label: "Équipe", href: "#team" },
-        { label: "Contact", href: "#contact" },
+        { label: "Accueil", href: "/" },
+        { label: "Services", href: "/services" },
+        { label: "Projets", href: "/about#projet" },
+        { label: "Équipe", href: "/about#teams" },
+        { label: "Contact", href: "/contact" },
       ]
     },
     {
       title: "Services",
       links: [
-        { label: "Développement Web", href: "#" },
-        { label: "Applications Mobiles", href: "#" },
-        { label: "Design UX/UI", href: "#" },
+        { label: "Développement Web", href: "/services" },
+        { label: "Applications Mobiles", href: "/services" },
+        { label: "Design UX/UI", href: "/services" },
         { label: "Marketing Digital", href: "#" },
         { label: "Formation", href: "#" },
       ]
@@ -81,9 +83,9 @@ const Footer: React.FC<FooterProps> = ({
     { name: "LinkedIn", icon: "M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z", url: "#" }
   ],
   contactInfo = [
-    { label: "Email", value: "contact@entreprise.com", icon: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" },
-    { label: "Téléphone", value: "+33 1 23 45 67 89", icon: "M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" },
-    { label: "Adresse", value: "123 Rue de l'Innovation, 75000 Paris", icon: "M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0zM15 11a3 3 0 11-6 0 3 3 0 016 0z" }
+    { label: "Email", value: "supportt@ite4afica.com", icon: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" },
+    { label: "Téléphone", value: "+225 1 23 45 67 89", icon: "M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" },
+    { label: "Adresse", value: "110 Rue Séville,Abidjan", icon: "M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0zM15 11a3 3 0 11-6 0 3 3 0 016 0z" }
   ],
   copyrightText = `© ${new Date().getFullYear()} ${companyName}. Tous droits réservés.`,
   legalLinks = [
@@ -103,71 +105,14 @@ const Footer: React.FC<FooterProps> = ({
   
   const footerRef = useRef<HTMLDivElement>(null);
 
-  
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.5 }
-    }
-  };
-
-
-
-
   return (
- 
-
-    <TriangularBackground className="w-[100%]" theme='dark' >
+    <TriangularBackground className="w-[100%] mt-auto " theme='dark' >
       <ButtonFloating footer={footerRef}/>
+      <TransitionSVGSection/>
       <footer
         ref={footerRef}
         className={`${bgGradient} ${textColor} pt-16 pb-8 relative ${className}`}
       >
-      <div className="custom-shape-divider-top-1752494969">
-        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-          <rect x="1200" height="3.6"></rect>
-          <rect height="3.6"></rect>
-          <path d="M0,0V3.6H580.08c11,0,19.92,5.09,19.92,13.2,0-8.14,8.88-13.2,19.92-13.2H1200V0Z" className="shape-fill"></path>
-        </svg>
-      </div>
-      <style>
-        {`
-        .custom-shape-divider-top-1752494969 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-}
-
-.custom-shape-divider-top-1752494969 svg {
-    position: relative;
-    display: block;
-    width: calc(100% + 1.3px);
-    height: 224px;
-}
-
-.custom-shape-divider-top-1752494969 .shape-fill {
-    fill: #f1ca13;
-}
-
-        
-        `}
-      </style>
          <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:flex lg:justify-evenly  gap-10 mb-12">
             {/* Colonne Logo et Description */}

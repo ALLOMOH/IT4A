@@ -1,4 +1,3 @@
-import FloatingCard from "../UI/components/FloatingCard";
 import ChromaGrid, { type ChromaItem } from "../UI/components/ChromaGrid";
 import TitleDescript from "../UI/components/TitleDescript";
 import SanteImage from "/image/sections/image-service-sante.jpg?url";
@@ -8,7 +7,7 @@ import LogistiqueImage from "/image/sections/image-service-logistique.jpg?url";
 import NetworkImage from "/image/sections/image-service-network.jpg?url";
 import SecurityImage from "/image/sections/image-service-security.jpg?url";
 import TriangularBackground from "../UI/Animation/TriangularBackground";
-
+import { motion } from "framer-motion";
 
 export default function SectorActivitet(){
     const sectors: ChromaItem[] = [
@@ -22,13 +21,12 @@ export default function SectorActivitet(){
     
   return(
         <TriangularBackground className="bg-transparent w-full" fadeSpeed={20} lineOpacity={100}  pointCount={100} theme="dark">
-          <section className=" w-full py-10 px-4 bg-gradient-to-r from-it4a-primary/500 via-it4a-secondary to-it4a-orange/50">
-
+          <motion.section initial={{opacity:0,y:34 }} whileInView={{opacity:1,y:0}} viewport={{once:true}} className=" w-full py-10 px-4 bg-gradient-to-r from-it4a-primary/500 via-it4a-secondary to-it4a-orange/50">
             <div className="container flex flex-col itmes-center justify-center gap-1 max-w-7xl mx-auto">
               <TitleDescript title="Secteurs It d'Expertise" descript="Nous accompagnons les entreprises de tous secteurs avec des technologies de pointe"/>
               <ChromaGrid className="bg-transparent backdrop-blur-xs p-4 rounded-2xl place-items-center font-Poppins" items={sectors}/>
             </div>
-          </section>
+          </motion.section>
         </TriangularBackground>
   );
 }

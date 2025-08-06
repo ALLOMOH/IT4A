@@ -1,19 +1,19 @@
 ---
-import "../styles/global.css";
-import Header from "../components/react/UI/Header";
-import Footer from '../components/react/UI/Footer';
-import AnimatedNetworkBackground from "../components/react/UI/Animation/AnimetedNetworkBackground";
+import "@/styles/global.css";
 import "@radix-ui/themes/styles.css";
-import {Theme} from "@radix-ui/themes";
-
+import Header from "@/components/react/UI/Header";
+import Footer from "@/components/react/UI/Footer";
+import AnimatedNetworkBackground from "@/components/react/UI/Animation/AnimetedNetworkBackground";
+import TracingBeam from "@/components/uiAceternity/UI/components/TracingBeam";
+import { ClientRouter } from "astro:transitions";
 
 export interface Props {
   title?: string;
   description?: string;
 }
 
-const  {
-  title = "",
+const {
+  title = "ITEXPERE4AFICA",
   description = "IT Experts 4 Africa Solutions technologiques avancées",
 } = Astro.props;
 ---
@@ -25,8 +25,8 @@ const  {
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
-
-    <title title="ITEXPERE4AFICA">ITEXPERE4AFICA |{ title}</title>
+    <ClientRouter/>
+    <title title="ITEXPERE4AFICA">{title}</title>
 
     <link
       rel="icon"
@@ -34,7 +34,11 @@ const  {
       href="/favicon/faviconLight/favicon-96x96.png"
       sizes="96x96"
     />
-    <link rel="icon" type="image/svg+xml" href="/favicon/faviconLight/favicon.svg" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/favicon/faviconLight/favicon.svg"
+    />
     <link rel="shortcut icon" href="/favicon/faviconLight/favicon.ico" />
     <link
       rel="apple-touch-icon"
@@ -44,48 +48,57 @@ const  {
     <meta name="apple-mobile-web-app-title" content="Ite4a" />
     <link rel="manifest" href="/favicon/faviconLight/site.webmanifest" />
   </head>
-  
-  
-  <body class="bg-gradient-to-b from-it4a-secondary via-neutral-800 to-it4a-primary/80 box-border font-Poppins">
-      <AnimatedNetworkBackground client:only/>
-      <Header 
-      		client:load
+
+  <body
+    class="bg-gradient-to-b from-it4a-secondary via-neutral-800 to-it4a-primary/80 box-border font-Poppins" >
+    <AnimatedNetworkBackground  className="-z-200" client:only />
+    <Header
+      client:load
       className="fixed"
-      logo="/WhiteLogo.png"
-      navItems={
-        [
+      logo="/WhiteLogo.png"   
+      navItems={[
         {
-          label: "Accueil", href: "/"
+          label: "Accueil",
+          href: "/",
         },
         {
-          label: "Services", href: "#",
+          label: "Services",
+          href: "#",
           subItems: [
             {
-            label: "Web", href: "web"
+              label: "Web",
+              href: "/services",
             },
             {
-            label: "CyberSecurity", href:"CyberSecurity"
+              label: "CyberSecurity",
+              href: "/services",
             },
             {
-            label: "Reseau", href:"Reseau"
+              label: "Reseau",
+              href: "/services",
             },
             {
-            label: "Cloud", href:"Cloud"
+              label: "Cloud",
+              href: "/services",
             },
-          ]
+          ],
         },
         {
-          label: "À propos", href: "/about"
+          label: "À propos",
+          href: "/about",
         },
         {
-          label:"Contact", href:"contact"
-        }
-        ]
-      }
-      ctaButton={{ label: "Contactez-nous", onClick: () => window.location.href = "/contact/" }} />
-      <main class="snap-mandatory flex items-center flex-col justify-center">
-        <slot />
-      </main>
-      <Footer bgGradient="bg-transparent backdrop-blur-xs" client:load/>
+          label: "Contact",
+          href: "/contact",
+        },
+      ]}
+      ctaButton={{ label: "Contactez-nous", href: "/contact" }}
+    />
+    <main class="snap-mandatory flex items-center flex-col justify-center" > 
+        <TracingBeam  client:only >
+          <slot transition:name="root" transition:animate="fade"  />
+        </TracingBeam>
+    </main>
+    <Footer bgGradient="bg-transparent backdrop-blur-xs" client:load />
   </body>
 </html>

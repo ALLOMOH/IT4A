@@ -51,10 +51,10 @@ const AnimatedNetworkBackground: React.FC<AnimatedNetworkBackgroundProps> = ({cl
     if (!mountRef.current) return;
 
     // Configuration
-    const PARTICLE_COUNT = 120;
-    const MAX_DISTANCE = 200;
-    const MOUSE_INFLUENCE_DISTANCE = 350;
-    const MOUSE_CONNECTION_DISTANCE = 280;
+    const PARTICLE_COUNT = 70;
+    const MAX_DISTANCE = 230;
+    const MOUSE_INFLUENCE_DISTANCE = 1500;
+    const MOUSE_CONNECTION_DISTANCE = 100;
     const MOUSE_FORCE = 0.03;
     const MOUSE_ATTRACTION_FORCE = 0.015;
     const MOUSE_PULSE_INTENSITY = 0.4;
@@ -178,8 +178,8 @@ const AnimatedNetworkBackground: React.FC<AnimatedNetworkBackgroundProps> = ({cl
     const mouseLineMaterial = new THREE.LineBasicMaterial({
       vertexColors: true,
       transparent: true,
-      opacity: 0.9,
-      linewidth: 2
+      opacity: 1,
+      linewidth: 10
     });
     
     const mouseLines = new THREE.LineSegments(mouseLineGeometry, mouseLineMaterial);

@@ -15,10 +15,18 @@ import {
   BadgeHelp,
 } from "lucide-react";
 
+
+import {motion}  from 'framer-motion';
+
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { actions } from "astro:actions";
+import DecryptedText from "./Text/DecryptedText";
+import ShinyText from "./Text/ShinyText";
+import LightCommunicationBackground from "./Animation/LightCommunicationBackground";
 
 export default function Contact() {
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -53,11 +61,11 @@ export default function Contact() {
         throw new Error("Veuillez saisir une adresse email valide");
       }
 
-      console.log('Sending request to:', '/api/contact/resend');
+      console.log('Sending request to:', '/api/resend');
       console.log('Form data:', formData);
 
       // Appel à l'API Astro
-      const response = await fetch('/api/contact/resend', {
+      const response = await fetch('/api/resend', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -172,30 +180,63 @@ export default function Contact() {
   ];
 
   return (
-    <div className="backdrop-blur-xs w-full text-white">
+    <div className="w-full text-white">
       {/* Hero Section */}
-      <section className="flex flex-col items-center justify-center bg-gradient-to-b text-white from-blue via-white/20 to-it4a-secondary lg:py-40 py-100 md:py-55 h-svh">
-        <div className="max-w-7xl space-y-10 md:space-y-9 mx-auto px-6 md:px-4 lg:px-8">
-          <TitleDescription
-            className="md:text-xs"
-            title="Contactez nous"
-            descript="Une question ? Un projet ? Parlons-en ! Notre équipe est là pour vous accompagner dans votre transformation numérique."
-          />
-          <div className="grid md:grid-cols-3 md:gap-8 gap-2 mb-16">
-            {reasons.map((reason, index) => (
-              <div key={index} className="text-center">
-                <div className="h-12 w-12 md:w-16 md:h-16 mx-auto md:mb-4 mb-2 bg-white rounded-full shadow-lg flex items-center justify-center">
-                  <reason.icon className="text-it4a-secondary h-6 w-6 md:h-8 md:w-8" />
+      <LightCommunicationBackground
+        className="absolute inset-0 -z-10"
+      
+      >
+        <section className="relative bg-gradient-to-br backdrop-blur-xs from-transparent via-black/50 to-it4a-primary/50 pt-50 p-10" >
+          <div className="max-w-7xl text-center space-y-10 md:space-y-9 mx-auto px-6 md:px-4 lg:px-8">
+        
+                <motion.h1
+                    className="text-4xs md:text-5xl font-bold  text-gray-100 mb-6"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+        
+                  >
+                    <DecryptedText
+                      speed={20}
+                      animateOn="view"
+                      text="Contactez"
+                    />
+                    {' '}
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-it4a-primary to-it4a-orange">
+                        <DecryptedText
+                          animateOn="view"
+                          speed={10}
+                          text="Nous"
+                        />
+                    </span>
+                  </motion.h1>
+                  <motion.p
+                    className="text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                  >
+                      <ShinyText
+                        splitType="words"
+                        text="Une question ? Un projet ? Parlons-en ! Notre équipe est là pour vous accompagner dans votre transformation numérique."
+                      />
+                  </motion.p>
+            <div className="grid md:grid-cols-3 md:gap-8 gap-2 mb-16">
+              {reasons.map((reason, index) => (
+                <div key={index} className="text-center">
+                  <div className="h-12 w-12 md:w-16 md:h-16 mx-auto md:mb-4 mb-2 bg-it4a-secondary rounded-full shadow-lg flex items-center justify-center">
+                    <reason.icon className="text-it4a-primary h-6 w-6 md:h-8 md:w-8" />
+                  </div>
+                  <h3 className="text-xs md:text-lg font-Poppins mb-1 md:mb-2 text-transparent bg-clip-text bg-gradient-to-r from-it4a-primary to-it4a-orange">
+                    {reason.title}
+                  </h3>
+                  <p className="text-xs text-gray-30">{reason.description}</p>
                 </div>
-                <h3 className="text-xs md:text-lg font-Poppins mb-1 md:mb-2">
-                  {reason.title}
-                </h3>
-                <p className="text-xs text-gray-30">{reason.description}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </LightCommunicationBackground>
 
       {/* Contact Form & Info */}
       <section className="py-20 relative bg-gradient-to-b from-it4a-secondary to-it4a-primary/20 text-white">
@@ -241,7 +282,7 @@ export default function Contact() {
           <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-8">
             {/* Contact Form */}
             <div>
-              <div className="bg-white/10 border-none shadow-lg h-full">
+              <div className="bg-white/10 relative border-none shadow-lg h-full">
                 <div className="p-8">
                   <div className="text-2xs md:text-2xl font-bold mb-2">
                     Envoyez-nous un message
@@ -272,6 +313,7 @@ export default function Contact() {
                     <form
                       onSubmit={handleSubmit}
                       className="space-y-4 md:space-y-6"
+                      method="POST" action={actions.contact}
                     >
                       {error && (
                         <Alert variant="destructive">
@@ -395,7 +437,7 @@ export default function Contact() {
                           <info.icon className="md:h-6 md:w-6 h-3 w-3" />
                         </div>
                         <div className="flex flex-col flex-1 justify-center items-start">
-                          <h3 className="text-xs md:text-lg font-semibold text-gray-100 font-bold">
+                          <h3 className="text-xs md:text-lg font-Poppins text-gray-100 font-bold">
                             {info.title}
                           </h3>
                           <p className="text-gray-100 text-xs">

@@ -2,7 +2,7 @@ import { cn } from "../../../lib/utils";
 import { Cloud, Code, Settings, Users, Shield } from 'lucide-react';
 import TriangularBackground from "../UI/Animation/TriangularBackground";
 import TitleDescript from "../UI/components/TitleDescript";
-
+import TransitionSVGSection from "../UI/components/TransitionSVGSection";
 
 interface ServicesProps {
   title?: string;
@@ -44,45 +44,17 @@ export const ServicesSection: React.FC<ServicesProps> = (
     }
   ];
   return (
+    <TriangularBackground theme="dark" className="w-full h-full">
     <section className={` py-10 md:py-20 h-full w-full flex flex-col items-center backdrop-blur-xs px-2  md:px-4  bg-it4a-secondary/50 justify-center scroll-mt-px z-0 ${className} `}>
+      <TransitionSVGSection/>
       <TitleDescript title="Nos services IT sur mesure" descript="Des solutions complètes pour accompagner votre transformation numérique" />
       <div className={` container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  relative z-10 py-10 max-w-7xl mx-auto `}>
         {services.map((services, index) => (
           <Services key={services.title} {...services} index={index} />
         ))}
       </div>
-
-      <div className="custom-shape-divider-top-1752494969">
-        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-          <rect x="1200" height="3.6"></rect>
-          <rect height="3.6"></rect>
-          <path d="M0,0V3.6H580.08c11,0,19.92,5.09,19.92,13.2,0-8.14,8.88-13.2,19.92-13.2H1200V0Z" className="shape-fill"></path>
-        </svg>
-      </div>
-      <style>
-        {`
-        .custom-shape-divider-top-1752494969 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-}
-
-.custom-shape-divider-top-1752494969 svg {
-    position: relative;
-    display: block;
-    width: calc(100% + 1.3px);
-    height: 224px;
-}
-
-.custom-shape-divider-top-1752494969 .shape-fill {
-    fill: #f1ca13;
-}
-        `}
-      </style>
     </section>
+    </TriangularBackground>
   );
 }
 const Services: React.FC<ServicesProps> = ({
@@ -121,6 +93,4 @@ const Services: React.FC<ServicesProps> = ({
   );
 };
 
-
 export default ServicesSection;
-

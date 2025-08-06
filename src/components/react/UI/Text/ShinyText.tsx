@@ -31,7 +31,6 @@ const SplitText: React.FC<SplitTextProps> = ({
   to = { opacity: 1, y: 0 },
   threshold = 0.1,
   rootMargin = "-100px",
-  textAlign = "center",
   onLetterAnimationComplete,
 }) => {
   const ref = useRef<HTMLParagraphElement>(null);
@@ -127,7 +126,6 @@ const SplitText: React.FC<SplitTextProps> = ({
       ref={ref}
       className={`split-parent ${className}`}
       style={{
-        textAlign,
         overflow: "hidden",
         display: "inline-block",
         whiteSpace: "normal",

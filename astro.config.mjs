@@ -9,7 +9,9 @@ export default defineConfig({
   integrations: [react()],
   vite:{
     define:{
-      'process.env':process.env
+      'ssr':{
+          noExternal: ['@react-email/components', 'react-email']
+      },
     },
     plugins:[
       tailwindcss(),
