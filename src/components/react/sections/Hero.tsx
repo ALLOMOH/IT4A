@@ -58,15 +58,15 @@ const Hero = () => {
             </div>
             <div className="text-center">
               <div className="text-3xs md:text-3xl lg:text-4xl font-black text-[#f1ca13]">
-                {/* <CountUpAnimation end={500} suffix="+" /> */}
-                <CountUp  from={0} to={500} delay={1} duration={10}/>
+                {/* <CountUpAnimation end={100} suffix="+" /> */}
+                <CountUp  from={0} to={100} delay={1} duration={10}/>+
               </div>
               <p className="text-xs md:text-sm text-gray-400">clients satisfaits</p>
             </div>
             <div className="text-center">
               <div className="text-3xs md:text-3xl lg:text-4xl font-black text-[#f1ca13]">
-                {/* <CountUpAnimation end={4000} suffix="+" /> */}
-                <CountUp  from={0} to={4000} delay={1.5} duration={10}/>
+                {/* <CountUpAnimation end={400} suffix="+" /> */}
+                <CountUp  from={0} to={100} delay={1.5} duration={10}/>+ 
               </div>
               <p className="text-xs md:text-sm text-gray-400">projets réalisés</p>
             </div>
