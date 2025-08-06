@@ -25,7 +25,7 @@ const Hero = () => {
             <h1 className="text-2xl font-bold md:text-7xl text-white leading-tight">
               <DecryptedText speed={70}    animateOn='view'  text={`IT Experts`} />
               <span className="block font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#f1ca13] to-[#ff7f11]">
-              <DecryptedText speed={70}   animateOn='view' text={`4 Africa`} />
+                <DecryptedText speed={70}   animateOn='view' text={`4 Africa`} />
               </span>
             </h1>
             <p className="text-xs md:text-xl line-clamp-5 text-gray-300  leading-relaxed">
