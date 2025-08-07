@@ -1,6 +1,6 @@
 ---
 // src/pages/400.astro
-import Layout from '../layouts/Layout.astro';
+import Layout from '@/layouts/Layout.astro';
 const { url } = Astro.request;
 const pathname = new URL(url).pathname;
 import {Logo} from '@/assets/assets';
@@ -73,6 +73,8 @@ import GlowButton from '@/components/react/UI/components/GlowButton';
                   Services
                 </GlowButton>
               </div>
+              
+        
             </div>
           </div>
         </div>

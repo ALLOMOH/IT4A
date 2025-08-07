@@ -10,7 +10,6 @@ import Asarel from '/image/partenaryReferenceLogo/logo_asarel.webp?url';
 import MUGEFCI from '/image/partenaryReferenceLogo/logo_mugefci.webp?url' // Example of a partner logo
 
 //IT4A
-
 import Logo from '/WhiteLogo.png?url';
 
 // refence to the image path

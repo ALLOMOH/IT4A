@@ -1,8 +1,3 @@
-
-#directory
-.vscode/
-.qodo/
-
 # build output
 dist/
 
@@ -27,8 +22,3 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
-
-
-#file md 
-todo.md
-.vercel
