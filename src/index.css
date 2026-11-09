@@ -1,0 +1,255 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* Tailwind CSS v4 directive; not a standard CSS at-rule. */
+/* stylelint-disable at-rule-no-unknown */
+@custom-variant dark (&:where(.dark, .dark *));
+/* stylelint-enable at-rule-no-unknown */
+
+/* ------------------------------------------------------------------
+   Palette IT4A
+   Le bleu marine et le jaune viennent directement du logo.
+   Mode clair : papier froid, encre marine.
+   Mode sombre : marine profond (jamais du noir pur).
+   ------------------------------------------------------------------ */
+
+@font-face {
+  font-family: "Conthrax" ;
+  src: url('/fonts/conthrax/Conthrax-SemiBold.otf');
+  font-display: swap;
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Futura";
+  src: url("/fonts/futura/futura.ttf");
+  font-display: swap;
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins/Poppins-Italic.ttf");
+  font-display: swap;
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+:root {
+  --paper: #f4f6f9;
+  --card: #ffffff;
+  --card-2: #e9eef4;
+  --ink: #13263a;
+  --ink-soft: #536579;
+  --line: #d9e0e8;
+  --brand: #f1ca13;
+  --brand-hover: #f0c414;
+  --on-brand: #13263a;
+  --mark: #8a6800; /* jaune assombri, lisible sur fond clair */
+  --band: #1f3549; /* bande marine du logo */
+  --band-ink: #eef2f6;
+  --band-soft: #a9b8c7;
+  --grid: rgba(112, 131, 151, 0.11);
+
+  --radius: 0.5rem;
+  color-scheme: light;
+}
+
+.dark {
+  --paper: #1d3446;
+  --card: #132535;
+  --card-2: #1a2f43;
+  --ink: #edf1f5;
+  --ink-soft: #95a6b7;
+  --line: #22384c;
+  --brand: #f1ca13;
+  --brand-hover: #ffdc55;
+  --on-brand: #13263a;
+  --mark: #fcd12f;
+  --band: #16293b;
+  --band-ink: #edf1f5;
+  --band-soft: #95a6b7;
+  --grid: rgb(237 241 245 / 0.085);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --font-sans: 'Futura', system-ui, sans-serif;
+  --font-heading:"Helvetica";
+  --font-body: 'Poppins', system-ui, sans-serif;
+  --font-futura: "Futura";
+  --font-conthrax:"Conthrax";
+
+  --color-paper: var(--paper);
+  --color-card: var(--card);
+  --color-card-2: var(--card-2);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-line: var(--line);
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-on-brand: var(--on-brand);
+  --color-mark: var(--mark);
+  --color-band: var(--band);
+  --color-band-ink: var(--band-ink);
+  --color-band-soft: var(--band-soft);
+
+  /* Correspondances pour les composants shadcn (button, toast) */
+  --color-background: var(--paper);
+  --color-foreground: var(--ink);
+  --color-popover: var(--card);
+  --color-popover-foreground: var(--ink);
+  --color-primary: var(--brand);
+  --color-primary-foreground: var(--on-brand);
+  --color-secondary: var(--card-2);
+  --color-secondary-foreground: var(--ink);
+  --color-muted: var(--card-2);
+  --color-muted-foreground: var(--ink-soft);
+  --color-accent: var(--card-2);
+  --color-accent-foreground: var(--ink);
+  --color-border: var(--line);
+  --color-input: var(--line);
+  --color-ring: var(--brand);
+  --color-destructive: #d64545;
+
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 6px);
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  * {
+    @apply border-line;
+  }
+  html {
+    @apply scroll-smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    font-stretch: 112%;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  :focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  ::selection {
+    background: var(--brand);
+    color: var(--on-brand);
+  }
+}
+
+@layer components {
+/* Conteneur commun */
+.shell {
+  width: 100%;
+  max-width: calc(86rem);
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+@media (min-width: 640px) {
+  .shell { padding-inline: 1.5rem; }
+}
+@media (min-width: 1024px) {
+  .shell { padding-inline: 2.5rem; }
+}
+
+/* Bouton principal (jaune) et secondaire (contour) */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  line-height: 1;
+  padding: 0.95rem 1.4rem;
+  border-radius: var(--radius);
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s, transform 0.2s var(--ease-out-soft);
+  white-space: nowrap;
+}
+.btn:active { transform: translateY(1px); }
+.btn-primary { background: var(--brand); color: var(--on-brand); }
+.btn-primary:hover { background: var(--brand-hover); }
+.btn-ghost { border: 1px solid var(--brand); color: var(--ink); }
+.btn-ghost:hover { border-color: var(--ink-soft); }
+
+}
+
+/* Lignes "circuit" du logo : animation de tracé au chargement */
+.trace-line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: trace-draw 1.6s var(--ease-out-soft) forwards;
+}
+.trace-dot {
+  opacity: 0;
+  animation: trace-dot 0.4s ease-out forwards;
+}
+@keyframes trace-draw { to { stroke-dashoffset: 0; } }
+@keyframes trace-dot { to { opacity: 1; } }
+
+@keyframes caret { 50% { opacity: 0; } }
+
+/* Ondes autour d'Abidjan sur la carte */
+.map-pulse { transform-box: fill-box; transform-origin: center; animation: map-pulse 2.8s ease-out infinite; }
+.map-pulse-2 { animation-delay: 1.4s; }
+@keyframes map-pulse { 0% { transform: scale(0.6); opacity: 1; } 100% { transform: scale(1.25); opacity: 0; } }
+
+/* Changement de thème : pas de transitions pendant la bascule, puis cercle animé par le navigateur */
+.theme-switching, .theme-switching *, .theme-switching *::before, .theme-switching *::after { transition: none !important; }
+::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+::view-transition-old(root) { z-index: 1; }
+::view-transition-new(root) { z-index: 2; }
+
+/* Bandeau clients défilant */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee { animation: marquee 60s linear infinite; }
+.marquee-mask {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+/* Lenis (défilement fluide) */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  /* Le défilement des logos et le curseur de frappe restent actifs : mouvements lents, sans effet de vertige.
+     Le défilement des logos se met en pause au survol. */
+  *:not(.animate-marquee):not(.caret),
+  *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .trace-line { stroke-dashoffset: 0; }
+  .trace-dot { opacity: 1; }
+}

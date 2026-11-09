@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IT Experts 4 Africa | Business First</title>
+    <meta name="description" content="IT Experts 4 Africa, ESN basée à Abidjan et Maurice : conseil, architecture, déploiement et exploitation d'infrastructures numériques." />
+    <link rel="icon" type="image/svg+xml" href="/favicon/faviconLight/favicon.svg" media="(prefers-color-scheme: light)" />
+    <link rel="icon" type="image/svg+xml" href="/favicon/faviconDark/favicon.svg" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#F4F6F9" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0D1B28" media="(prefers-color-scheme: dark)" />
+    <meta name="robots" content="index,follow"/>
+    
+    <!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="IT Experts 4 Africa" />
+    <meta property="og:title" content="IT Experts 4 Africa | Services informatiques en Afrique francophone" />
+    <meta property="og:description" content="Infrastructure, développement, cybersécurité et conseil IT pour les entreprises africaines." />
+    <meta property="og:url" content="https://www.itexperts4africa.com/" />
+    <meta property="og:image" content="https://www.itexperts4africa.com/image/it-experts-4-africa-transformation-digitale-esn.jpg" />
+    <meta property="og:locale" content="fr_FR" />
+
+       <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="IT Experts 4 Africa" />
+    <meta name="twitter:description" content="Infrastructure, développement, cybersécurité et conseil IT." />
+    <meta name="twitter:image" content="https://www.itexperts4africa.com/image/it-experts-4-africa-transformation-digitale-esn.jpg" />
+
+       <!-- Données structurées -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "IT Experts 4 Africa",
+      "url": "https://www.itexperts4africa.com",
+      "logo": "https://www.itexperts4africa.com/image/logo/WhiteLogoH.png",
+      "email": "contact@itexperts4africa.com",
+      "telephone": "+2250748290303"
+    }
+    </script>
+
+
+
+
+    <script>
+      // Applique le thème avant le premier rendu pour éviter le flash blanc/sombre.
+      (function () {
+        try {
+          var saved = localStorage.getItem("it4a-theme");
+          var dark = saved ? saved === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+          document.documentElement.classList.toggle("dark", dark);
+        } catch (e) {}
+      })();
+    </script>
+
+        <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=%VITE_GA_ID%"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '%VITE_GA_ID%');
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
